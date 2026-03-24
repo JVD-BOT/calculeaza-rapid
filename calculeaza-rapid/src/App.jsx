@@ -817,7 +817,7 @@ function MortgageCalc() {
 
 // ─── FAQ SECTION ───
 function FAQSection() {
-  const faqs = [
+  const faqsEN = [
     {
       q: "How do I calculate income tax in Romania?",
       a: "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use the salary calculator above to instantly compute your net salary from any gross amount, based on the 2026 Romanian Fiscal Code.",
@@ -838,63 +838,102 @@ function FAQSection() {
       q: "How much net salary will I get from a 5,000 lei gross salary in Romania?",
       a: "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results.",
     },
+  ];
+
+  const faqsRO = [
     {
       q: "Cum calculez impozitul pe salariu în România?",
-      a: "Impozitul pe venit în România este de 10% aplicat la salariul brut impozabil, după deducerea CAS (25%) și CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut, actualizat conform Codului Fiscal 2026.",
+      a: "Impozitul pe venit în România este de 10% aplicat la baza impozabilă, după deducerea CAS (25%) și CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut în câteva secunde, actualizat conform Codului Fiscal 2026.",
+    },
+    {
+      q: "Care este cota de impozit pe venit în România în 2026?",
+      a: "România aplică o cotă unică de impozit pe venit de 10% pentru salarii și majoritatea veniturilor persoanelor fizice. Angajații plătesc și CAS 25% (pensie) și CASS 10% (sănătate). Angajatorul plătește CAM (2,25%). Angajații IT cu salariu brut peste 10.000 lei sunt scutiți de impozit.",
+    },
+    {
+      q: "Cum calculez taxele pentru PFA în România?",
+      a: "Taxele PFA în România includ impozit pe venit 10%, CAS 25% (calculat la 24× salariul minim brut anual) și CASS 10% (calculat la minimum 6× salariul minim). Accesați tab-ul PFA de mai sus pentru un calcul complet pentru 2026.",
+    },
+    {
+      q: "Care este salariul minim brut în România în 2026?",
+      a: "Salariul minim brut pe economie în România în 2026 este de 4.050 lei pe lună, ceea ce corespunde unui salariu net de aproximativ 2.363 lei pe lună.",
+    },
+    {
+      q: "Cât salariu net primesc din 5.000 lei brut în România?",
+      a: "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/lună după deducerea CAS (1.250 lei), CASS (500 lei) și impozit (325 lei). Introduceți orice sumă în calculator pentru rezultate instant.",
+    },
+    {
+      q: "Ce contribuții plătește angajatul în România?",
+      a: "Angajatul din România plătește trei contribuții: CAS 25% (contribuția la pensie), CASS 10% (contribuția la sănătate) și impozit pe venit 10% (calculat la baza impozabilă după deducerea CAS și CASS). Angajatorul plătește suplimentar CAM 2,25%.",
     },
   ];
 
+  const itemStyle = {
+    borderTop: "1px solid rgba(255,255,255,0.05)",
+    padding: "16px 0",
+  };
+
+  const questionStyle = {
+    fontSize: 13,
+    color: "#60a5fa",
+    margin: "0 0 8px",
+    fontFamily: "'DM Mono', monospace",
+    fontWeight: 500,
+  };
+
+  const answerStyle = {
+    margin: 0,
+    fontSize: 12,
+    color: "#6b7280",
+    lineHeight: 1.7,
+    fontFamily: "'DM Mono', monospace",
+  };
+
   return (
-    <section
-      id="faq-romania-tax"
-      style={{ marginTop: 48 }}
-    >
-      <h2
-        style={{
-          fontSize: 13,
-          textTransform: "uppercase",
-          letterSpacing: 3,
-          color: "#6b7280",
-          marginBottom: 24,
-          fontFamily: "'DM Mono', monospace",
-        }}
-      >
-        FAQ — Calculate Tax in Romania
-      </h2>
-      {faqs.map((item, i) => (
-        <div
-          key={i}
+    <>
+      <section id="faq-romania-tax-en" style={{ marginTop: 48 }}>
+        <h2
           style={{
-            borderTop: "1px solid rgba(255,255,255,0.05)",
-            padding: "16px 0",
+            fontSize: 13,
+            textTransform: "uppercase",
+            letterSpacing: 3,
+            color: "#6b7280",
+            marginBottom: 24,
+            fontFamily: "'DM Mono', monospace",
           }}
         >
-          <h3
-            style={{
-              fontSize: 13,
-              color: "#60a5fa",
-              margin: "0 0 8px",
-              fontFamily: "'DM Mono', monospace",
-              fontWeight: 500,
-            }}
-          >
-            {item.q}
-          </h3>
-          <p
-            style={{
-              margin: 0,
-              fontSize: 12,
-              color: "#6b7280",
-              lineHeight: 1.7,
-              fontFamily: "'DM Mono', monospace",
-            }}
-          >
-            {item.a}
-          </p>
-        </div>
-      ))}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 8 }} />
-    </section>
+          FAQ — Calculate Tax in Romania
+        </h2>
+        {faqsEN.map((item, i) => (
+          <div key={i} style={itemStyle}>
+            <h3 style={questionStyle}>{item.q}</h3>
+            <p style={answerStyle}>{item.a}</p>
+          </div>
+        ))}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 8 }} />
+      </section>
+
+      <section id="faq-romania-tax-ro" style={{ marginTop: 40 }}>
+        <h2
+          style={{
+            fontSize: 13,
+            textTransform: "uppercase",
+            letterSpacing: 3,
+            color: "#6b7280",
+            marginBottom: 24,
+            fontFamily: "'DM Mono', monospace",
+          }}
+        >
+          Întrebări Frecvente — Calculator Impozit România
+        </h2>
+        {faqsRO.map((item, i) => (
+          <div key={i} style={itemStyle}>
+            <h3 style={questionStyle}>{item.q}</h3>
+            <p style={answerStyle}>{item.a}</p>
+          </div>
+        ))}
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 8 }} />
+      </section>
+    </>
   );
 }
 
