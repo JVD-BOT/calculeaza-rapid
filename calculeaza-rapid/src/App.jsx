@@ -814,6 +814,90 @@ function MortgageCalc() {
   );
 }
 
+
+// ─── FAQ SECTION ───
+function FAQSection() {
+  const faqs = [
+    {
+      q: "How do I calculate income tax in Romania?",
+      a: "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use the salary calculator above to instantly compute your net salary from any gross amount, based on the 2026 Romanian Fiscal Code.",
+    },
+    {
+      q: "What is the income tax rate in Romania in 2026?",
+      a: "Romania applies a flat income tax rate of 10% on salaries and most personal income. Employees also pay CAS 25% (pension) and CASS 10% (health). Employers pay CAM (2.25%). IT professionals earning over 10,000 lei gross are exempt from income tax.",
+    },
+    {
+      q: "How do I calculate PFA taxes in Romania?",
+      a: "PFA (Persoana Fizica Autorizata) taxes in Romania include a 10% income tax, CAS 25% (calculated on 24× the minimum wage annually), and CASS 10% (calculated on 6–60× minimum wage). Switch to the PFA tab above for a full 2026 breakdown.",
+    },
+    {
+      q: "What is the minimum gross salary in Romania in 2026?",
+      a: "The minimum gross salary in Romania in 2026 is 4,050 lei per month, which corresponds to a net take-home pay of approximately 2,363 lei per month.",
+    },
+    {
+      q: "How much net salary will I get from a 5,000 lei gross salary in Romania?",
+      a: "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results.",
+    },
+    {
+      q: "Cum calculez impozitul pe salariu în România?",
+      a: "Impozitul pe venit în România este de 10% aplicat la salariul brut impozabil, după deducerea CAS (25%) și CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut, actualizat conform Codului Fiscal 2026.",
+    },
+  ];
+
+  return (
+    <section
+      id="faq-romania-tax"
+      style={{ marginTop: 48 }}
+    >
+      <h2
+        style={{
+          fontSize: 13,
+          textTransform: "uppercase",
+          letterSpacing: 3,
+          color: "#6b7280",
+          marginBottom: 24,
+          fontFamily: "'DM Mono', monospace",
+        }}
+      >
+        FAQ — Calculate Tax in Romania
+      </h2>
+      {faqs.map((item, i) => (
+        <div
+          key={i}
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+            padding: "16px 0",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: 13,
+              color: "#60a5fa",
+              margin: "0 0 8px",
+              fontFamily: "'DM Mono', monospace",
+              fontWeight: 500,
+            }}
+          >
+            {item.q}
+          </h3>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 12,
+              color: "#6b7280",
+              lineHeight: 1.7,
+              fontFamily: "'DM Mono', monospace",
+            }}
+          >
+            {item.a}
+          </p>
+        </div>
+      ))}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 8 }} />
+    </section>
+  );
+}
+
 // ─── MAIN APP ───
 export default function App() {
   const [tab, setTab] = useState("salariu");
@@ -871,7 +955,7 @@ export default function App() {
               fontFamily: "'DM Mono', monospace",
             }}
           >
-            Instrumente Financiare România 2026
+            Financial Instruments Romania 2026
           </div>
           <h1
             style={{
@@ -883,7 +967,7 @@ export default function App() {
               color: "#f1f5f9",
             }}
           >
-            Calculează<span style={{ color: "#3b82f6" }}>Rapid</span>
+            Calculate Tax <span style={{ color: "#3b82f6" }}>in Romania</span>
           </h1>
           <p
             style={{
@@ -895,8 +979,7 @@ export default function App() {
               margin: "10px auto 0",
             }}
           >
-            Calculator salariu, taxe PFA și simulare credit — actualizat conform
-            Codului Fiscal 2026
+            Free salary tax calculator, PFA taxes &amp; credit simulation for Romania — updated for the 2026 Fiscal Code
           </p>
         </div>
 
@@ -968,6 +1051,9 @@ export default function App() {
           {tab === "pfa" && <PFACalc />}
           {tab === "credit" && <MortgageCalc />}
         </div>
+
+        {/* FAQ */}
+        <FAQSection />
 
         {/* Footer */}
         <div style={{ marginTop: 32, textAlign: "center" }}>
