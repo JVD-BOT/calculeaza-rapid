@@ -440,6 +440,12 @@ export default function App() {
   ];
   return (
     <div style={{ minHeight: "100vh", background: "#F7F8FC", color: "#0D1117", fontFamily: "'Geist Mono', 'Courier New', monospace", opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
+      {/* Romanian flag stripe */}
+      <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 5, display: "flex", zIndex: 9999, pointerEvents: "none" }}>
+        <div style={{ flex: 1, background: "#002B7F" }} />
+        <div style={{ flex: 1, background: "#FCD116" }} />
+        <div style={{ flex: 1, background: "#CE1126" }} />
+      </div>
       <div style={{ position: "fixed", top: -200, right: -200, width: 600, height: 600, background: "radial-gradient(circle, rgba(0,43,127,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "40px 20px 60px" }}>
         {/* Header */}
@@ -448,7 +454,7 @@ export default function App() {
             Financial Instruments Romania 2026
           </div>
           <h1 style={{ fontSize: "clamp(32px, 7vw, 52px)", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 400, lineHeight: 1.05, margin: 0, color: "#0D1117" }}>
-            Calculate Tax <span style={{ color: "#002B7F" }}>in Romania</span>
+            Calculate Tax <span style={{ color: "#002B7F" }}>in Romania</span>{" "}<span title="România" style={{ display: "inline-flex", gap: 0, borderRadius: 3, overflow: "hidden", verticalAlign: "middle", marginLeft: 4, boxShadow: "0 1px 6px rgba(0,0,0,0.2)", height: "0.6em", width: "0.9em" }}><span style={{ flex: 1, background: "#002B7F" }} /><span style={{ flex: 1, background: "#FCD116" }} /><span style={{ flex: 1, background: "#CE1126" }} /></span>
           </h1>
           <p style={{ fontSize: 13, color: "#94A3B8", marginTop: 10, lineHeight: 1.5, maxWidth: 400, margin: "10px auto 0" }}>
             Free salary tax calculator, PFA taxes &amp; credit simulation for Romania — updated for the 2026 Fiscal Code
