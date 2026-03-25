@@ -123,7 +123,7 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
         onMouseLeave={e => e.currentTarget.style.background = "rgba(0,43,127,0.08)"}
       >
         <span style={{ fontSize: 15 }}>
-          {copied ? "â" : "ð"}
+          {copied ? "✓" : "🔗"}
         </span>
         {copied ? "LINK COPIAT!" : (navigator.share ? "SHARE" : "COPIAZĂ LINK")}
       </button>
@@ -279,7 +279,7 @@ function SalaryCalc() {
       {r.deducere > 0 && (
         <div style={{ marginTop: 14, padding: "10px 14px", background: "rgba(5,150,105,0.08)", borderRadius: 10, border: "1px solid rgba(5,150,105,0.15)" }}>
           <span style={{ fontSize: 12, color: "#059669", fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-            â Deducere personală aplicată: {formatRON(r.deducere)} lei
+            ✓ Deducere personală aplicată: {formatRON(r.deducere)} lei
           </span>
         </div>
       )}
