@@ -113,7 +113,7 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
           borderRadius: 10,
           color: "#60a5fa",
           fontSize: 12,
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'Geist Mono', 'Courier New', monospace",
           cursor: "pointer",
           transition: "all 0.2s",
           fontWeight: 600,
@@ -141,7 +141,7 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
           borderRadius: 10,
           color: "#25d366",
           fontSize: 12,
-          fontFamily: "'DM Mono', monospace",
+          fontFamily: "'Geist Mono', 'Courier New', monospace",
           textDecoration: "none",
           fontWeight: 600,
           letterSpacing: 0.5,
@@ -164,7 +164,7 @@ function BarChart({ items, maxVal }) {
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       {items.map((item, i) => (
         <div key={i} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ width: 120, fontSize: 12, color: "#8a8a9a", textAlign: "right", flexShrink: 0, fontFamily: "'DM Mono', monospace" }}>
+          <span style={{ width: 120, fontSize: 12, color: "#8a8a9a", textAlign: "right", flexShrink: 0, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
             {item.label}
           </span>
           <div style={{ flex: 1, height: 28, background: "rgba(255,255,255,0.04)", borderRadius: 6, overflow: "hidden", position: "relative" }}>
@@ -176,7 +176,7 @@ function BarChart({ items, maxVal }) {
               transition: "width 0.6s cubic-bezier(.22,1,.36,1)",
               display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: 8,
             }}>
-              <span style={{ fontSize: 11, color: "#fff", fontWeight: 600, fontFamily: "'DM Mono', monospace", whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: 11, color: "#fff", fontWeight: 600, fontFamily: "'Geist Mono', 'Courier New', monospace", whiteSpace: "nowrap" }}>
                 {formatRON(item.value)} lei
               </span>
             </div>
@@ -190,13 +190,13 @@ function BarChart({ items, maxVal }) {
 function Stat({ label, value, accent, sub }) {
   return (
     <div style={{ textAlign: "center", padding: "16px 12px" }}>
-      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#6b7280", marginBottom: 6, fontFamily: "'DM Mono', monospace" }}>
+      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#6b7280", marginBottom: 6, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         {label}
       </div>
-      <div style={{ fontSize: 28, fontWeight: 700, color: accent || "#e2e8f0", fontFamily: "'Instrument Serif', serif", lineHeight: 1.1 }}>
+      <div style={{ fontSize: 28, fontWeight: 700, color: accent || "#e2e8f0", fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.1 }}>
         {value}
       </div>
-      {sub && <div style={{ fontSize: 11, color: "#4b5563", marginTop: 4, fontFamily: "'DM Mono', monospace" }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 11, color: "#4b5563", marginTop: 4, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>{sub}</div>}
     </div>
   );
 }
@@ -204,7 +204,7 @@ function Stat({ label, value, accent, sub }) {
 function Input({ label, value, onChange, suffix, type = "number", step }) {
   return (
     <div style={{ marginBottom: 16 }}>
-      <label style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#6b7280", marginBottom: 6, fontFamily: "'DM Mono', monospace" }}>
+      <label style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#6b7280", marginBottom: 6, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         {label}
       </label>
       <div style={{ display: "flex", alignItems: "center", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, overflow: "hidden" }}>
@@ -212,9 +212,9 @@ function Input({ label, value, onChange, suffix, type = "number", step }) {
           type={type} value={value}
           onChange={(e) => onChange(e.target.value)}
           step={step}
-          style={{ flex: 1, padding: "12px 14px", background: "transparent", border: "none", color: "#e2e8f0", fontSize: 16, fontFamily: "'DM Mono', monospace", outline: "none", width: "100%" }}
+          style={{ flex: 1, padding: "12px 14px", background: "transparent", border: "none", color: "#e2e8f0", fontSize: 16, fontFamily: "'Geist Mono', 'Courier New', monospace", outline: "none", width: "100%" }}
         />
-        {suffix && <span style={{ padding: "0 14px", color: "#4b5563", fontSize: 13, fontFamily: "'DM Mono', monospace", whiteSpace: "nowrap" }}>{suffix}</span>}
+        {suffix && <span style={{ padding: "0 14px", color: "#4b5563", fontSize: 13, fontFamily: "'Geist Mono', 'Courier New', monospace", whiteSpace: "nowrap" }}>{suffix}</span>}
       </div>
     </div>
   );
@@ -226,7 +226,7 @@ function Toggle({ label, checked, onChange }) {
       <div onClick={() => onChange(!checked)} style={{ width: 40, height: 22, borderRadius: 11, background: checked ? "#3b82f6" : "rgba(255,255,255,0.1)", position: "relative", transition: "background 0.2s", cursor: "pointer" }}>
         <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#fff", position: "absolute", top: 3, left: checked ? 21 : 3, transition: "left 0.2s" }} />
       </div>
-      <span style={{ fontSize: 13, color: "#9ca3af", fontFamily: "'DM Mono', monospace" }}>{label}</span>
+      <span style={{ fontSize: 13, color: "#9ca3af", fontFamily: "'Geist Mono', 'Courier New', monospace" }}>{label}</span>
     </label>
   );
 }
@@ -239,7 +239,7 @@ function Selector({ options, value, onChange }) {
           flex: 1, padding: "10px 8px", border: "none", borderRadius: 8, cursor: "pointer",
           background: value === opt.value ? "rgba(59,130,246,0.2)" : "transparent",
           color: value === opt.value ? "#60a5fa" : "#6b7280",
-          fontSize: 12, fontWeight: 600, fontFamily: "'DM Mono', monospace", transition: "all 0.2s", letterSpacing: 0.5,
+          fontSize: 12, fontWeight: 600, fontFamily: "'Geist Mono', 'Courier New', monospace", transition: "all 0.2s", letterSpacing: 0.5,
         }}>
           {opt.label}
         </button>
@@ -266,7 +266,7 @@ function SalaryCalc() {
         <Stat label="Salariu Brut" value={`${formatRON(r.brut)}`} accent="#60a5fa" sub="brut / lună" />
         <Stat label="Cost Angajator" value={`${formatRON(r.costAngajator)}`} accent="#f59e0b" sub="total firmă" />
       </div>
-      <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 2, color: "#4b5563", marginBottom: 12, fontFamily: "'DM Mono', monospace" }}>
+      <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 2, color: "#4b5563", marginBottom: 12, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         Detalii Contribuții
       </div>
       <BarChart items={[
@@ -278,7 +278,7 @@ function SalaryCalc() {
       ]} maxVal={r.costAngajator} />
       {r.deducere > 0 && (
         <div style={{ marginTop: 14, padding: "10px 14px", background: "rgba(52,211,153,0.08)", borderRadius: 10, border: "1px solid rgba(52,211,153,0.15)" }}>
-          <span style={{ fontSize: 12, color: "#34d399", fontFamily: "'DM Mono', monospace" }}>
+          <span style={{ fontSize: 12, color: "#34d399", fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
             ✓ Deducere personală aplicată: {formatRON(r.deducere)} lei
           </span>
         </div>
@@ -310,7 +310,7 @@ function PFACalc() {
         { label: "CASS (10%)", value: r.cass, color: "linear-gradient(90deg, #f59e0b, #fbbf24)" },
       ]} />
       <div style={{ marginTop: 16, padding: "12px 14px", background: "rgba(255,255,255,0.02)", borderRadius: 10, border: "1px solid rgba(255,255,255,0.05)" }}>
-        <div style={{ fontSize: 11, color: "#6b7280", fontFamily: "'DM Mono', monospace", lineHeight: 1.8 }}>
+        <div style={{ fontSize: 11, color: "#6b7280", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
           <div>Venit brut: <span style={{ color: "#9ca3af" }}>{formatRON(r.venitBrut)} lei</span></div>
           {tip === "real" && <div>Cheltuieli: <span style={{ color: "#9ca3af" }}>-{formatRON(r.cheltuieli)} lei</span></div>}
           <div>Venit net impozabil: <span style={{ color: "#e2e8f0" }}>{formatRON(r.venitNet)} lei</span></div>
@@ -345,23 +345,23 @@ function MortgageCalc() {
         <Stat label="Total Plătit" value={`${formatRON(r.totalPlatit)}`} accent="#f59e0b" sub={`în ${ani} ani`} />
         <Stat label="Total Dobândă" value={`${formatRON(r.totalDobanda)}`} accent="#ef4444" sub={`${((r.totalDobanda / (r.totalPlatit || 1)) * 100).toFixed(0)}% din total`} />
       </div>
-      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#4b5563", marginBottom: 8, fontFamily: "'DM Mono', monospace" }}>
+      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#4b5563", marginBottom: 8, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         Principal vs Dobândă
       </div>
       <div style={{ height: 36, borderRadius: 10, overflow: "hidden", display: "flex", marginBottom: 8 }}>
         <div style={{ width: `${principalPct}%`, background: "linear-gradient(90deg, #3b82f6, #60a5fa)", display: "flex", alignItems: "center", justifyContent: "center", transition: "width 0.5s" }}>
-          <span style={{ fontSize: 11, color: "#fff", fontWeight: 700, fontFamily: "'DM Mono', monospace" }}>{principalPct.toFixed(0)}%</span>
+          <span style={{ fontSize: 11, color: "#fff", fontWeight: 700, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>{principalPct.toFixed(0)}%</span>
         </div>
         <div style={{ flex: 1, background: "linear-gradient(90deg, #ef4444, #f87171)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: 11, color: "#fff", fontWeight: 700, fontFamily: "'DM Mono', monospace" }}>{(100 - principalPct).toFixed(0)}%</span>
+          <span style={{ fontSize: 11, color: "#fff", fontWeight: 700, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>{(100 - principalPct).toFixed(0)}%</span>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, fontFamily: "'DM Mono', monospace" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         <span style={{ color: "#60a5fa" }}>● Principal: {formatRON(parseFloat(suma) || 0)} lei</span>
         <span style={{ color: "#f87171" }}>● Dobândă: {formatRON(r.totalDobanda)} lei</span>
       </div>
       <div style={{ marginTop: 20, padding: "12px 14px", background: "rgba(255,255,255,0.02)", borderRadius: 10, border: "1px solid rgba(255,255,255,0.05)" }}>
-        <div style={{ fontSize: 11, color: "#6b7280", fontFamily: "'DM Mono', monospace", lineHeight: 1.8 }}>
+        <div style={{ fontSize: 11, color: "#6b7280", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
           <div>Nr. rate: <span style={{ color: "#9ca3af" }}>{r.n} luni ({ani} ani)</span></div>
           <div>Rată lunară: <span style={{ color: "#9ca3af" }}>{formatRON(r.rataLunara)} lei</span></div>
           <div>Total rambursat: <span style={{ color: "#e2e8f0" }}>{formatRON(r.totalPlatit)} lei</span></div>
@@ -390,12 +390,12 @@ function FAQSection() {
     { q: "Ce contribuții plăteşte angajatul în România?", a: "Angajatul din România plăteşte trei contribuții: CAS 25% (contribuția la pensie), CASS 10% (contribuția la sănătate) şi impozit pe venit 10% (calculat la baza impozabilă după deducerea CAS şi CASS). Angajatorul plăteşte suplimentar CAM 2,25%." },
   ];
   const itemStyle = { borderTop: "1px solid rgba(255,255,255,0.05)", padding: "16px 0" };
-  const questionStyle = { fontSize: 13, color: "#60a5fa", margin: "0 0 8px", fontFamily: "'DM Mono', monospace", fontWeight: 500 };
-  const answerStyle = { margin: 0, fontSize: 12, color: "#6b7280", lineHeight: 1.7, fontFamily: "'DM Mono', monospace" };
+  const questionStyle = { fontSize: 13, color: "#60a5fa", margin: "0 0 8px", fontFamily: "'Geist Mono', 'Courier New', monospace", fontWeight: 500 };
+  const answerStyle = { margin: 0, fontSize: 12, color: "#6b7280", lineHeight: 1.7, fontFamily: "'Geist Mono', 'Courier New', monospace" };
   return (
     <>
       <section id="faq-romania-tax-en" style={{ marginTop: 48 }}>
-        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#6b7280", marginBottom: 24, fontFamily: "'DM Mono', monospace" }}>
+        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#6b7280", marginBottom: 24, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
           FAQ — Calculate Tax in Romania
         </h2>
         {faqsEN.map((item, i) => (
@@ -407,7 +407,7 @@ function FAQSection() {
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 8 }} />
       </section>
       <section id="faq-romania-tax-ro" style={{ marginTop: 40 }}>
-        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#6b7280", marginBottom: 24, fontFamily: "'DM Mono', monospace" }}>
+        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#6b7280", marginBottom: 24, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
           Întrebări Frecvente — Calculator Impozit România
         </h2>
         {faqsRO.map((item, i) => (
@@ -428,7 +428,7 @@ export default function App() {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap";
+    link.href = "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@300;400;500&display=swap";
     link.rel = "stylesheet";
     document.head.appendChild(link);
     setTimeout(() => setLoaded(true), 100);
@@ -439,15 +439,15 @@ export default function App() {
     { id: "credit", label: "Credit", icon: "🏠", desc: "Simulare Ipotecar" },
   ];
   return (
-    <div style={{ minHeight: "100vh", background: "#0a0a0f", color: "#e2e8f0", fontFamily: "'DM Mono', monospace", opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
+    <div style={{ minHeight: "100vh", background: "#0a0a0f", color: "#e2e8f0", fontFamily: "'Geist Mono', 'Courier New', monospace", opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
       <div style={{ position: "fixed", top: -200, right: -200, width: 600, height: 600, background: "radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "40px 20px 60px" }}>
         {/* Header */}
         <div style={{ marginBottom: 40, textAlign: "center" }}>
-          <div style={{ fontSize: 11, letterSpacing: 4, color: "#3b82f6", textTransform: "uppercase", marginBottom: 12, fontFamily: "'DM Mono', monospace" }}>
+          <div style={{ fontSize: 11, letterSpacing: 4, color: "#3b82f6", textTransform: "uppercase", marginBottom: 12, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
             Financial Instruments Romania 2026
           </div>
-          <h1 style={{ fontSize: "clamp(32px, 7vw, 52px)", fontFamily: "'Instrument Serif', serif", fontWeight: 400, lineHeight: 1.05, margin: 0, color: "#f1f5f9" }}>
+          <h1 style={{ fontSize: "clamp(32px, 7vw, 52px)", fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 400, lineHeight: 1.05, margin: 0, color: "#f1f5f9" }}>
             Calculate Tax <span style={{ color: "#3b82f6" }}>in Romania</span>
           </h1>
           <p style={{ fontSize: 13, color: "#4b5563", marginTop: 10, lineHeight: 1.5, maxWidth: 400, margin: "10px auto 0" }}>
@@ -463,8 +463,8 @@ export default function App() {
               transition: "all 0.25s ease", display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
             }}>
               <span style={{ fontSize: 20 }}>{t.icon}</span>
-              <span style={{ fontSize: 13, fontWeight: 600, fontFamily: "'DM Mono', monospace", color: tab === t.id ? "#60a5fa" : "#4b5563" }}>{t.label}</span>
-              <span style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", color: tab === t.id ? "#3b82f6" : "#2a2a3a" }}>{t.desc}</span>
+              <span style={{ fontSize: 13, fontWeight: 600, fontFamily: "'Geist Mono', 'Courier New', monospace", color: tab === t.id ? "#60a5fa" : "#4b5563" }}>{t.label}</span>
+              <span style={{ fontSize: 10, fontFamily: "'Geist Mono', 'Courier New', monospace", color: tab === t.id ? "#3b82f6" : "#2a2a3a" }}>{t.desc}</span>
             </button>
           ))}
         </div>
@@ -478,7 +478,7 @@ export default function App() {
         <FAQSection />
         {/* Footer */}
         <div style={{ marginTop: 32, textAlign: "center" }}>
-          <div style={{ fontSize: 10, color: "#2a2a3a", fontFamily: "'DM Mono', monospace", lineHeight: 1.8 }}>
+          <div style={{ fontSize: 10, color: "#2a2a3a", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
             <div>Calculele au caracter orientativ · Nu constituie consultanță fiscală</div>
             <div>Actualizat conform Codului Fiscal 2026 · Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
             <div style={{ marginTop: 8, color: "#1f1f2e" }}>CalculeazăRapid.ro — built with ♥ for Romania</div>
