@@ -73,8 +73,8 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
   const [copied, setCopied] = useState(false);
 
   const shareData = {
-    title: "CalculeazÄRapid â Instrumente Financiare RomÃ¢nia",
-    text: text || "CalculeazÄ impozitul pe salariu, taxe PFA Èi credit ipotecar Ã®n RomÃ¢nia â gratuit!",
+    title: "CalculeazÄRapid — Instrumente Financiare RomÃ¢nia",
+    text: text || "CalculeazÄ impozitul pe salariu, taxe PFA Èi credit ipotecar Ã®n RomÃ¢nia — gratuit!",
     url,
   };
 
@@ -88,7 +88,7 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
     } else {
       // fallback: copy to clipboard
       try {
-        await navigator.clipboard.writeText(url + " â " + shareData.text);
+        await navigator.clipboard.writeText(url + " — " + shareData.text);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } catch (e) {
@@ -255,10 +255,10 @@ function SalaryCalc() {
   const [itExempt, setItExempt] = useState(false);
   const brut = mode === "brut" ? parseFloat(amount) || 0 : calcBrutFromNet(parseFloat(amount) || 0, itExempt);
   const r = calcSalariuNet(brut, 0, itExempt);
-  const shareText = `Salariul meu net Ã®n RomÃ¢nia: ${formatRON(r.net)} lei/lunÄ (din ${formatRON(r.brut)} lei brut). CalculeazÄ-Èi salariul la:`;
+  const shareText = `Salariul meu net Ã®n RomÃ¢nia: ${formatRON(r.net)} lei/lunÄ (din ${formatRON(r.brut)} lei brut). CalculeazÄ-ți salariul la:`;
   return (
     <div>
-      <Selector options={[{ label: "BRUT â NET", value: "brut" }, { label: "NET â BRUT", value: "net" }]} value={mode} onChange={setMode} />
+      <Selector options={[{ label: "BRUT → NET", value: "brut" }, { label: "NET → BRUT", value: "net" }]} value={mode} onChange={setMode} />
       <Input label={mode === "brut" ? "Salariu Brut" : "Salariu Net Dorit"} value={amount} onChange={setAmount} suffix="LEI / lunÄ" />
       <Toggle label="Scutit impozit IT (>10.000 lei brut)" checked={itExempt} onChange={setItExempt} />
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
@@ -267,7 +267,7 @@ function SalaryCalc() {
         <Stat label="Cost Angajator" value={`${formatRON(r.costAngajator)}`} accent="#D4A017" sub="total firmÄ" />
       </div>
       <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 2, color: "#94A3B8", marginBottom: 12, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-        Detalii ContribuÈii
+        Detalii Contribuții
       </div>
       <BarChart items={[
         { label: "CAS (25%)", value: r.cas, color: "linear-gradient(90deg, #CE1126, #e8394d)" },
@@ -294,7 +294,7 @@ function PFACalc() {
   const [venit, setVenit] = useState("120000");
   const [cheltuieli, setCheltuieli] = useState("30000");
   const r = calcPFA(parseFloat(venit) || 0, tip === "real" ? parseFloat(cheltuieli) || 0 : 0, tip);
-  const shareText = `Venitul meu net ca PFA Ã®n RomÃ¢nia: ${formatRON(r.venitDupaImpozitare)} lei/an (${formatRON(r.venitDupaImpozitare / 12)} lei/lunÄ). CalculeazÄ-Èi taxele PFA la:`;
+  const shareText = `Venitul meu net ca PFA Ã®n RomÃ¢nia: ${formatRON(r.venitDupaImpozitare)} lei/an (${formatRON(r.venitDupaImpozitare / 12)} lei/lunÄ). CalculeazÄ-ți taxele PFA la:`;
   return (
     <div>
       <Selector options={[{ label: "SISTEM REAL", value: "real" }, { label: "NORMÄ VENIT", value: "norma" }]} value={tip} onChange={setTip} />
@@ -332,7 +332,7 @@ function MortgageCalc() {
   const [ani, setAni] = useState("25");
   const r = calcMortgage(parseFloat(suma) || 0, parseFloat(dobanda) || 0, parseFloat(ani) || 1);
   const principalPct = ((parseFloat(suma) || 0) / (r.totalPlatit || 1)) * 100;
-  const shareText = `Simulare credit ipotecar RomÃ¢nia: ${formatRON(parseFloat(suma))} lei, ${dobanda}%, ${ani} ani â ratÄ lunarÄ ${formatRON(r.rataLunara)} lei. CalculeazÄ la:`;
+  const shareText = `Simulare credit ipotecar RomÃ¢nia: ${formatRON(parseFloat(suma))} lei, ${dobanda}%, ${ani} ani → ratÄ lunarÄ ${formatRON(r.rataLunara)} lei. CalculeazÄ la:`;
   return (
     <div>
       <Input label="SumÄ Credit" value={suma} onChange={setSuma} suffix="LEI" />
@@ -382,12 +382,12 @@ function FAQSection() {
     { q: "How much net salary will I get from a 5,000 lei gross salary in Romania?", a: "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results." },
   ];
   const faqsRO = [
-    { q: "Cum calculez impozitul pe salariu Ã®n RomÃ¢nia?", a: "Impozitul pe venit Ã®n RomÃ¢nia este de 10% aplicat la baza impozabilÄ, dupÄ deducerea CAS (25%) Åi CASS (10%). FolosiÈi calculatorul de mai sus pentru a afla salariul net din brut Ã®n cÃ¢teva secunde, actualizat conform Codului Fiscal 2026." },
-    { q: "Care este cota de impozit pe venit Ã®n RomÃ¢nia Ã®n 2026?", a: "RomÃ¢nia aplicÄ o cotÄ unicÄ de impozit pe venit de 10% pentru salarii Åi majoritatea veniturilor persoanelor fizice. AngajaÈii plÄtesc Åi CAS 25% (pensie) Åi CASS 10% (sÄnÄtate). Angajatorul plÄteÅte CAM (2,25%). AngajaÈii IT cu salariu brut peste 10.000 lei sunt scutiÈi de impozit." },
-    { q: "Cum calculez taxele pentru PFA Ã®n RomÃ¢nia?", a: "Taxele PFA Ã®n RomÃ¢nia includ impozit pe venit 10%, CAS 25% (calculat la 24Ã salariul minim brut anual) Åi CASS 10% (calculat la minimum 6Ã salariul minim). AccesaÈi tab-ul PFA de mai sus pentru un calcul complet pentru 2026." },
+    { q: "Cum calculez impozitul pe salariu Ã®n RomÃ¢nia?", a: "Impozitul pe venit Ã®n RomÃ¢nia este de 10% aplicat la baza impozabilÄ, dupÄ deducerea CAS (25%) Åi CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut Ã®n cÃ¢teva secunde, actualizat conform Codului Fiscal 2026." },
+    { q: "Care este cota de impozit pe venit Ã®n RomÃ¢nia Ã®n 2026?", a: "RomÃ¢nia aplicÄ o cotÄ unicÄ de impozit pe venit de 10% pentru salarii Åi majoritatea veniturilor persoanelor fizice. Angajații plÄtesc Åi CAS 25% (pensie) Åi CASS 10% (sÄnÄtate). Angajatorul plÄteÅte CAM (2,25%). Angajații IT cu salariu brut peste 10.000 lei sunt scutiți de impozit." },
+    { q: "Cum calculez taxele pentru PFA Ã®n RomÃ¢nia?", a: "Taxele PFA Ã®n RomÃ¢nia includ impozit pe venit 10%, CAS 25% (calculat la 24Ã salariul minim brut anual) Åi CASS 10% (calculat la minimum 6Ã salariul minim). Accesați tab-ul PFA de mai sus pentru un calcul complet pentru 2026." },
     { q: "Care este salariul minim brut Ã®n RomÃ¢nia Ã®n 2026?", a: "Salariul minim brut pe economie Ã®n RomÃ¢nia Ã®n 2026 este de 4.050 lei pe lunÄ, ceea ce corespunde unui salariu net de aproximativ 2.363 lei pe lunÄ." },
-    { q: "CÃ¢t salariu net primesc din 5.000 lei brut Ã®n RomÃ¢nia?", a: "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/lunÄ dupÄ deducerea CAS (1.250 lei), CASS (500 lei) Åi impozit (325 lei). IntroduceÈi orice sumÄ Ã®n calculator pentru rezultate instant." },
-    { q: "Ce contribuÈii plÄteÅte angajatul Ã®n RomÃ¢nia?", a: "Angajatul din RomÃ¢nia plÄteÅte trei contribuÈii: CAS 25% (contribuÈia la pensie), CASS 10% (contribuÈia la sÄnÄtate) Åi impozit pe venit 10% (calculat la baza impozabilÄ dupÄ deducerea CAS Åi CASS). Angajatorul plÄteÅte suplimentar CAM 2,25%." },
+    { q: "CÃ¢t salariu net primesc din 5.000 lei brut Ã®n RomÃ¢nia?", a: "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/lunÄ dupÄ deducerea CAS (1.250 lei), CASS (500 lei) Åi impozit (325 lei). Introduceți orice sumÄ Ã®n calculator pentru rezultate instant." },
+    { q: "Ce contribuții plÄteÅte angajatul Ã®n RomÃ¢nia?", a: "Angajatul din RomÃ¢nia plÄteÅte trei contribuții: CAS 25% (contribuția la pensie), CASS 10% (contribuția la sÄnÄtate) Åi impozit pe venit 10% (calculat la baza impozabilÄ dupÄ deducerea CAS Åi CASS). Angajatorul plÄteÅte suplimentar CAM 2,25%." },
   ];
   const itemStyle = { borderTop: "1px solid rgba(0,43,127,0.05)", padding: "16px 0" };
   const questionStyle = { fontSize: 13, color: "#1a4faf", margin: "0 0 8px", fontFamily: "'Geist Mono', 'Courier New', monospace", fontWeight: 500 };
@@ -396,7 +396,7 @@ function FAQSection() {
     <>
       <section id="faq-romania-tax-en" style={{ marginTop: 48 }}>
         <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 24, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-          FAQ â Calculate Tax in Romania
+          FAQ — Calculate Tax in Romania
         </h2>
         {faqsEN.map((item, i) => (
           <div key={i} style={itemStyle}>
@@ -408,7 +408,7 @@ function FAQSection() {
       </section>
       <section id="faq-romania-tax-ro" style={{ marginTop: 40 }}>
         <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 24, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-          ÃntrebÄri Frecvente â Calculator Impozit RomÃ¢nia
+          ÃntrebÄri Frecvente — Calculator Impozit RomÃ¢nia
         </h2>
         {faqsRO.map((item, i) => (
           <div key={i} style={itemStyle}>
@@ -434,9 +434,9 @@ export default function App() {
     setTimeout(() => setLoaded(true), 100);
   }, []);
   const tabs = [
-    { id: "salariu", label: "Salariu", icon: "ð°", desc: "Calculator Brut â Net" },
-    { id: "pfa", label: "PFA", icon: "ð", desc: "Taxe & ContribuÈii" },
-    { id: "credit", label: "Credit", icon: "ð ", desc: "Simulare Ipotecar" },
+    { id: "salariu", label: "Salariu", icon: "💰", desc: "Calculator Brut â Net" },
+    { id: "pfa", label: "PFA", icon: "📋", desc: "Taxe & Contribuții" },
+    { id: "credit", label: "Credit", icon: "🏠", desc: "Simulare Ipotecar" },
   ];
   return (
     <div style={{ minHeight: "100vh", background: "#F7F8FC", color: "#0D1117", fontFamily: "'Geist Mono', 'Courier New', monospace", opacity: loaded ? 1 : 0, transition: "opacity 0.6s ease" }}>
@@ -451,7 +451,7 @@ export default function App() {
             Calculate Tax <span style={{ color: "#002B7F" }}>in Romania</span>
           </h1>
           <p style={{ fontSize: 13, color: "#94A3B8", marginTop: 10, lineHeight: 1.5, maxWidth: 400, margin: "10px auto 0" }}>
-            Free salary tax calculator, PFA taxes &amp; credit simulation for Romania â updated for the 2026 Fiscal Code
+            Free salary tax calculator, PFA taxes &amp; credit simulation for Romania — updated for the 2026 Fiscal Code
           </p>
         </div>
         {/* Tab Navigation */}
@@ -479,9 +479,9 @@ export default function App() {
         {/* Footer */}
         <div style={{ marginTop: 32, textAlign: "center" }}>
           <div style={{ fontSize: 10, color: "#CBD5E1", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
-            <div>Calculele au caracter orientativ Â· Nu constituie consultanÈÄ fiscalÄ</div>
+            <div>Calculele au caracter orientativ Â· Nu constituie consultanțÄ fiscalÄ</div>
             <div>Actualizat conform Codului Fiscal 2026 Â· Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
-            <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazÄRapid.ro â built with â¥ for Romania</div>
+            <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazÄRapid.ro — built with â¥ for Romania</div>
           </div>
         </div>
       </div>
