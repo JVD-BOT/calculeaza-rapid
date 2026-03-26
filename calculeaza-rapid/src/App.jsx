@@ -189,11 +189,11 @@ function BarChart({ items, maxVal }) {
 
 function Stat({ label, value, accent, sub }) {
   return (
-    <div style={{ textAlign: "center", padding: "16px 12px" }}>
+    <div style={{ textAlign: "center", padding: "16px 6px", minWidth: 0, overflow: "hidden" }}>
       <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#64748B", marginBottom: 6, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
         {label}
       </div>
-      <div style={{ fontSize: 28, fontWeight: 700, color: accent || "#0D1117", fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.1 }}>
+      <div style={{ fontSize: "clamp(16px, 4.5vw, 28px)", fontWeight: 700, color: accent || "#0D1117", fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.1, minWidth: 0, wordBreak: "break-all" }}>
         {value}
       </div>
       {sub && <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 4, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>{sub}</div>}
@@ -261,7 +261,7 @@ function SalaryCalc() {
       <Selector options={[{ label: "BRUT → NET", value: "brut" }, { label: "NET → BRUT", value: "net" }]} value={mode} onChange={setMode} />
       <Input label={mode === "brut" ? "Salariu Brut" : "Salariu Net Dorit"} value={amount} onChange={setAmount} suffix="LEI / lună" />
       <Toggle label="Scutit impozit IT (>10.000 lei brut)" checked={itExempt} onChange={setItExempt} />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Salariu Net" value={`${formatRON(r.net)}`} accent="#059669" sub="în mână / lună" />
         <Stat label="Salariu Brut" value={`${formatRON(r.brut)}`} accent="#1a4faf" sub="brut / lună" />
         <Stat label="Cost Angajator" value={`${formatRON(r.costAngajator)}`} accent="#D4A017" sub="total firmă" />
@@ -300,7 +300,7 @@ function PFACalc() {
       <Selector options={[{ label: "SISTEM REAL", value: "real" }, { label: "NORMĂ VENIT", value: "norma" }]} value={tip} onChange={setTip} />
       <Input label="Venit Brut Anual" value={venit} onChange={setVenit} suffix="LEI / an" />
       {tip === "real" && <Input label="Cheltuieli Deductibile" value={cheltuieli} onChange={setCheltuieli} suffix="LEI / an" />}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Venit Net Anual" value={`${formatRON(r.venitDupaImpozitare)}`} accent="#059669" sub={`~${formatRON(r.venitDupaImpozitare / 12)} lei/lună`} />
         <Stat label="Total Taxe" value={`${formatRON(r.totalTaxe)}`} accent="#CE1126" sub={`${((r.totalTaxe / (r.venitNet || 1)) * 100).toFixed(1)}% rată efectivă`} />
       </div>
@@ -340,7 +340,7 @@ function MortgageCalc() {
         <Input label="Dobândă Anuală" value={dobanda} onChange={setDobanda} suffix="%" step="0.1" />
         <Input label="Perioadă" value={ani} onChange={setAni} suffix="ANI" />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Rată Lunară" value={`${formatRON(r.rataLunara)}`} accent="#1a4faf" sub="lei / lună" />
         <Stat label="Total Plătit" value={`${formatRON(r.totalPlatit)}`} accent="#D4A017" sub={`în ${ani} ani`} />
         <Stat label="Total Dobândă" value={`${formatRON(r.totalDobanda)}`} accent="#CE1126" sub={`${((r.totalDobanda / (r.totalPlatit || 1)) * 100).toFixed(0)}% din total`} />
