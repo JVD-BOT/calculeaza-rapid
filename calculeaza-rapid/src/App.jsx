@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-// âââ CONSTANTS & TAX RULES 2026 âââ
+// --- CONSTANTS & TAX RULES 2026 ---
 const TAX = {
   CAS: 0.25,
   CASS: 0.10,
@@ -12,7 +12,7 @@ const TAX = {
   IT_EXEMPT_MIN: 10000,
 };
 
-// âââ UTILITY FUNCTIONS âââ
+// --- UTILITY FUNCTIONS ---
 function formatRON(val) {
   return new Intl.NumberFormat("ro-RO", {
     minimumFractionDigits: 2,
@@ -68,7 +68,7 @@ function calcMortgage(suma, dobanda, ani) {
   return { rataLunara, totalPlatit, totalDobanda: totalPlatit - suma, n };
 }
 
-// âââ SHARE BUTTON COMPONENT âââ
+// --- SHARE BUTTON COMPONENT ---
 function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
   const [copied, setCopied] = useState(false);
 
@@ -157,7 +157,7 @@ function ShareButton({ text, url = "https://calculeazarapid.ro" }) {
   );
 }
 
-// âââ SHARED COMPONENTS âââ
+// --- SHARED COMPONENTS ---
 function BarChart({ items, maxVal }) {
   const mx = maxVal || Math.max(...items.map((i) => i.value), 1);
   return (
@@ -248,7 +248,7 @@ function Selector({ options, value, onChange }) {
   );
 }
 
-// âââ SALARY CALCULATOR âââ
+// --- SALARY CALCULATOR ---
 function SalaryCalc() {
   const [mode, setMode] = useState("brut");
   const [amount, setAmount] = useState("5000");
@@ -288,7 +288,7 @@ function SalaryCalc() {
   );
 }
 
-// âââ PFA CALCULATOR âââ
+// --- PFA CALCULATOR ---
 function PFACalc() {
   const [tip, setTip] = useState("real");
   const [venit, setVenit] = useState("120000");
@@ -315,9 +315,9 @@ function PFACalc() {
           {tip === "real" && <div>Cheltuieli: <span style={{ color: "#475569" }}>-{formatRON(r.cheltuieli)} lei</span></div>}
           <div>Venit net impozabil: <span style={{ color: "#0D1117" }}>{formatRON(r.venitNet)} lei</span></div>
           <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", marginTop: 6, paddingTop: 6 }}>
-            CAS: baza = 12 Ã salariu minim = {formatRON(TAX.SALARIU_MINIM_BRUT * 12)} lei
+            CAS: baza = 12 × salariu minim = {formatRON(TAX.SALARIU_MINIM_BRUT * 12)} lei
           </div>
-          <div>CASS: baza = 6 Ã salariu minim = {formatRON(TAX.SALARIU_MINIM_BRUT * 6)} lei</div>
+          <div>CASS: baza = 6 × salariu minim = {formatRON(TAX.SALARIU_MINIM_BRUT * 6)} lei</div>
         </div>
       </div>
       <ShareButton text={shareText} />
@@ -325,7 +325,7 @@ function PFACalc() {
   );
 }
 
-// âââ MORTGAGE CALCULATOR âââ
+// --- MORTGAGE CALCULATOR ---
 function MortgageCalc() {
   const [suma, setSuma] = useState("300000");
   const [dobanda, setDobanda] = useState("7.5");
@@ -357,8 +357,8 @@ function MortgageCalc() {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-        <span style={{ color: "#1a4faf" }}>â Principal: {formatRON(parseFloat(suma) || 0)} lei</span>
-        <span style={{ color: "#e8394d" }}>â Dobândă: {formatRON(r.totalDobanda)} lei</span>
+        <span style={{ color: "#1a4faf" }}>● Principal: {formatRON(parseFloat(suma) || 0)} lei</span>
+        <span style={{ color: "#e8394d" }}>● Dobândă: {formatRON(r.totalDobanda)} lei</span>
       </div>
       <div style={{ marginTop: 20, padding: "12px 14px", background: "rgba(0,43,127,0.03)", borderRadius: 10, border: "1px solid rgba(0,43,127,0.05)" }}>
         <div style={{ fontSize: 11, color: "#64748B", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
@@ -372,22 +372,22 @@ function MortgageCalc() {
   );
 }
 
-// âââ FAQ SECTION âââ
+// --- FAQ SECTION ---
 function FAQSection() {
   const faqsEN = [
     { q: "How do I calculate income tax in Romania?", a: "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use the salary calculator above to instantly compute your net salary from any gross amount, based on the 2026 Romanian Fiscal Code." },
     { q: "What is the income tax rate in Romania in 2026?", a: "Romania applies a flat income tax rate of 10% on salaries and most personal income. Employees also pay CAS 25% (pension) and CASS 10% (health). Employers pay CAM (2.25%). IT professionals earning over 10,000 lei gross are exempt from income tax." },
-    { q: "How do I calculate PFA taxes in Romania?", a: "PFA (Persoana Fizica Autorizata) taxes in Romania include a 10% income tax, CAS 25% (calculated on 24Ã the minimum wage annually), and CASS 10% (calculated on 6â60Ã minimum wage). Switch to the PFA tab above for a full 2026 breakdown." },
+    { q: "How do I calculate PFA taxes in Romania?", a: "PFA (Persoana Fizica Autorizata) taxes in Romania include a 10% income tax, CAS 25% (calculated on 24× the minimum wage annually), and CASS 10% (calculated on 6–60× minimum wage). Switch to the PFA tab above for a full 2026 breakdown." },
     { q: "What is the minimum gross salary in Romania in 2026?", a: "The minimum gross salary in Romania in 2026 is 4,050 lei per month, which corresponds to a net take-home pay of approximately 2,363 lei per month." },
     { q: "How much net salary will I get from a 5,000 lei gross salary in Romania?", a: "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results." },
   ];
   const faqsRO = [
-    { q: "Cum calculez impozitul pe salariu în România?", a: "Impozitul pe venit în România este de 10% aplicat la baza impozabilă, după deducerea CAS (25%) Åi CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut în câteva secunde, actualizat conform Codului Fiscal 2026." },
-    { q: "Care este cota de impozit pe venit în România în 2026?", a: "România aplică o cotă unică de impozit pe venit de 10% pentru salarii Åi majoritatea veniturilor persoanelor fizice. Angajații plătesc Åi CAS 25% (pensie) Åi CASS 10% (sănătate). Angajatorul plăteÅte CAM (2,25%). Angajații IT cu salariu brut peste 10.000 lei sunt scutiți de impozit." },
-    { q: "Cum calculez taxele pentru PFA în România?", a: "Taxele PFA în România includ impozit pe venit 10%, CAS 25% (calculat la 24Ã salariul minim brut anual) Åi CASS 10% (calculat la minimum 6Ã salariul minim). Accesați tab-ul PFA de mai sus pentru un calcul complet pentru 2026." },
+    { q: "Cum calculez impozitul pe salariu în România?", a: "Impozitul pe venit în România este de 10% aplicat la baza impozabilă, după deducerea CAS (25%) și CASS (10%). Folosiți calculatorul de mai sus pentru a afla salariul net din brut în câteva secunde, actualizat conform Codului Fiscal 2026." },
+    { q: "Care este cota de impozit pe venit în România în 2026?", a: "România aplică o cotă unică de impozit pe venit de 10% pentru salarii și majoritatea veniturilor persoanelor fizice. Angajații plătesc și CAS 25% (pensie) și CASS 10% (sănătate). Angajatorul plătește CAM (2,25%). Angajații IT cu salariu brut peste 10.000 lei sunt scutiți de impozit." },
+    { q: "Cum calculez taxele pentru PFA în România?", a: "Taxele PFA în România includ impozit pe venit 10%, CAS 25% (calculat la 24× salariul minim brut anual) și CASS 10% (calculat la minimum 6× salariul minim). Accesați tab-ul PFA de mai sus pentru un calcul complet pentru 2026." },
     { q: "Care este salariul minim brut în România în 2026?", a: "Salariul minim brut pe economie în România în 2026 este de 4.050 lei pe lună, ceea ce corespunde unui salariu net de aproximativ 2.363 lei pe lună." },
-    { q: "Cât salariu net primesc din 5.000 lei brut în România?", a: "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/lună după deducerea CAS (1.250 lei), CASS (500 lei) Åi impozit (325 lei). Introduceți orice sumă în calculator pentru rezultate instant." },
-    { q: "Ce contribuții plăteÅte angajatul în România?", a: "Angajatul din România plăteÅte trei contribuții: CAS 25% (contribuția la pensie), CASS 10% (contribuția la sănătate) Åi impozit pe venit 10% (calculat la baza impozabilă după deducerea CAS Åi CASS). Angajatorul plăteÅte suplimentar CAM 2,25%." },
+    { q: "Cât salariu net primesc din 5.000 lei brut în România?", a: "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/lună după deducerea CAS (1.250 lei), CASS (500 lei) și impozit (325 lei). Introduceți orice sumă în calculator pentru rezultate instant." },
+    { q: "Ce contribuții plătește angajatul în România?", a: "Angajatul din România plătește trei contribuții: CAS 25% (contribuția la pensie), CASS 10% (contribuția la sănătate) și impozit pe venit 10% (calculat la baza impozabilă după deducerea CAS și CASS). Angajatorul plătește suplimentar CAM 2,25%." },
   ];
   const itemStyle = { borderTop: "1px solid rgba(0,43,127,0.05)", padding: "16px 0" };
   const questionStyle = { fontSize: 13, color: "#1a4faf", margin: "0 0 8px", fontFamily: "'Geist Mono', 'Courier New', monospace", fontWeight: 500 };
@@ -408,7 +408,7 @@ function FAQSection() {
       </section>
       <section id="faq-romania-tax-ro" style={{ marginTop: 40 }}>
         <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 24, fontFamily: "'Geist Mono', 'Courier New', monospace" }}>
-          Ãntrebări Frecvente — Calculator Impozit România
+          Întrebări Frecvente — Calculator Impozit România
         </h2>
         {faqsRO.map((item, i) => (
           <div key={i} style={itemStyle}>
@@ -422,7 +422,7 @@ function FAQSection() {
   );
 }
 
-// âââ MAIN APP âââ
+// --- MAIN APP ---
 export default function App() {
   const [tab, setTab] = useState("salariu");
   const [loaded, setLoaded] = useState(false);
@@ -485,9 +485,9 @@ export default function App() {
         {/* Footer */}
         <div style={{ marginTop: 32, textAlign: "center" }}>
           <div style={{ fontSize: 10, color: "#CBD5E1", fontFamily: "'Geist Mono', 'Courier New', monospace", lineHeight: 1.8 }}>
-            <div>Calculele au caracter orientativ Â· Nu constituie consultanță fiscală</div>
-            <div>Actualizat conform Codului Fiscal 2026 Â· Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
-            <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazăRapid.ro — built with â¥ for Romania</div>
+            <div>Calculele au caracter orientativ · Nu constituie consultanță fiscală</div>
+            <div>Actualizat conform Codului Fiscal 2026 · Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
+            <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazăRapid.ro — built with ♥ for Romania</div>
           </div>
         </div>
       </div>
