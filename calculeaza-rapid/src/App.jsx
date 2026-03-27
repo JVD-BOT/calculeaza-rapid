@@ -19,12 +19,12 @@ function SidebarAd() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-    }}>
+    }}>h
       <ins
         className="adsbygoogle"
         style={{ display: "block", width: 160, height: 600 }}
         data-ad-client="ca-pub-1844899396773709"
-        data-ad-slot="auto"
+        data-ad-slot="7970992614"
         data-ad-format="vertical"
       />
     </div>
