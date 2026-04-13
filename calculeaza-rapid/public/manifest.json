@@ -1,0 +1,23 @@
+{
+  "name": "CalculeazaRapid — Calculator Impozit Romania",
+  "short_name": "CalculeazaRapid",
+  "description": "Calculator gratuit pentru impozit salariu, taxe PFA si credit ipotecar in Romania — actualizat 2026.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#002B7F",
+  "lang": "ro",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
