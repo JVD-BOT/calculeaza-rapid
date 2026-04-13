@@ -452,6 +452,58 @@ function FAQSection() {
     </>
   );
 }
+// --- TOP NAV ---
+function TopNav({ dark, textSub }) {
+  const navBg = dark ? "rgba(15,23,42,0.96)" : "rgba(247,248,252,0.96)";
+  const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,43,127,0.08)";
+  const logoSecond = dark ? "#e2e8f0" : "#0D1117";
+  const links = [
+    { id: "salariu", label: "Salariu" },
+    { id: "pfa", label: "PFA" },
+    { id: "credit", label: "Credit Ipotecar" },
+    { id: "faq", label: "FAQ" },
+  ];
+  return (
+    <nav aria-label="Navigatie principala" style={{
+      position: "sticky", top: 5, zIndex: 200,
+      background: navBg,
+      backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+      borderBottom: `1px solid ${border}`,
+    }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", height: 52, gap: 8 }}>
+        {/* Logo */}
+        <a href="https://calculeazarapid.ro/" aria-label="CalculeazaRapid — pagina principala"
+          style={{ textDecoration: "none", flexShrink: 0, marginRight: 4 }}>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: 15, letterSpacing: -0.3 }}>
+            <span style={{ color: "#002B7F" }}>Calculeaza</span><span style={{ color: logoSecond }}>Rapid</span>
+          </span>
+        </a>
+        {/* Divider */}
+        <div style={{ width: 1, height: 18, background: border, flexShrink: 0 }} />
+        {/* Nav links — horizontally scrollable on mobile, scrollbar hidden */}
+        <div className="topnav-links" style={{ display: "flex", gap: 2, overflowX: "auto", flex: 1 }}>
+          {links.map(link => (
+            <a key={link.id} href={`#${link.id}`}
+              style={{
+                display: "inline-flex", alignItems: "center",
+                padding: "6px 11px", borderRadius: 8,
+                fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
+                fontFamily: "'Geist Mono','Courier New',monospace",
+                color: textSub, textDecoration: "none", whiteSpace: "nowrap",
+                transition: "color 0.15s, background 0.15s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 // --- DARK MODE TOGGLE ---
 function DarkModeToggle({ dark, setDark }) {
   return (
@@ -465,7 +517,6 @@ function DarkModeToggle({ dark, setDark }) {
 
 // --- MAIN APP ---
 export default function App() {
-  const [tab, setTab] = useURLState("tab", "salariu");
   const [dark, setDark] = useState(() => window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const bg = dark ? "#0f172a" : "#F7F8FC";
@@ -473,12 +524,6 @@ export default function App() {
   const cardBorder = dark ? "rgba(255,255,255,0.08)" : "rgba(0,43,127,0.05)";
   const textMain = dark ? "#e2e8f0" : "#0D1117";
   const textSub = dark ? "#94a3b8" : "#64748B";
-
-  const tabs = [
-    { id: "salariu", label: "Salariu", icon: "💰", desc: "Calculator Brut ↔ Net" },
-    { id: "pfa", label: "PFA", icon: "📋", desc: "Taxe & Contributii" },
-    { id: "credit", label: "Credit", icon: "🏠", desc: "Simulare Ipotecar" },
-  ];
 
   // Inject dynamic dark mode CSS vars
   useEffect(() => {
@@ -497,6 +542,9 @@ export default function App() {
         <div style={{ flex: 1, background: "#CE1126" }} />
       </div>
       <div style={{ position: "fixed", top: -200, right: -200, width: 600, height: 600, background: "radial-gradient(circle,rgba(0,43,127,0.04) 0%,transparent 70%)", pointerEvents: "none" }} />
+
+      {/* TOP NAVIGATION */}
+      <TopNav dark={dark} textSub={textSub} />
 
       {/* Outer wrapper */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: 24, padding: "40px 20px 60px", maxWidth: 1100, margin: "0 auto" }}>
@@ -523,27 +571,40 @@ export default function App() {
             </p>
           </header>
 
-          {/* Tab Navigation */}
-          <nav aria-label="Calculator tabs" style={{ display: "grid", gridTemplateColumns: `repeat(${tabs.length},1fr)`, gap: 6, marginBottom: 32, background: cardBg, borderRadius: 16, padding: 6, border: `1px solid ${cardBorder}` }}>
-            {tabs.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} aria-selected={tab === t.id} role="tab"
-                style={{ padding: "14px 8px", border: "none", borderRadius: 12, cursor: "pointer", background: tab === t.id ? "rgba(0,43,127,0.08)" : "transparent", transition: "all 0.25s ease", display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                <span style={{ fontSize: 20 }} aria-hidden="true">{t.icon}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, fontFamily: "'Geist Mono','Courier New',monospace", color: tab === t.id ? "#1a4faf" : textSub }}>{t.label}</span>
-                <span style={{ fontSize: 10, fontFamily: "'Geist Mono','Courier New',monospace", color: tab === t.id ? "#002B7F" : "#CBD5E1" }}>{t.desc}</span>
-              </button>
-            ))}
-          </nav>
+          {/* ── SALARIU SECTION ── */}
+          <section id="salariu" aria-label="Calculator Salariu Brut Net Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">💰</span> Calculator Salariu
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <SalaryCalc />
+            </div>
+          </section>
 
-          {/* Calculator Panel */}
-          <div role="tabpanel" aria-label={`Calculator ${tab}`} style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
-            {tab === "salariu" && <SalaryCalc />}
-            {tab === "pfa" && <PFACalc />}
-            {tab === "credit" && <MortgageCalc />}
+          {/* ── PFA SECTION ── */}
+          <section id="pfa" aria-label="Calculator PFA Taxe si Contributii Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">📋</span> Calculator PFA
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <PFACalc />
+            </div>
+          </section>
+
+          {/* ── CREDIT SECTION ── */}
+          <section id="credit" aria-label="Simulator Credit Ipotecar Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">🏠</span> Simulator Credit Ipotecar
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <MortgageCalc />
+            </div>
+          </section>
+
+          {/* ── FAQ SECTION ── */}
+          <div id="faq">
+            <FAQSection />
           </div>
-
-          {/* FAQ */}
-          <FAQSection />
 
           {/* Footer */}
           <footer style={{ marginTop: 32, textAlign: "center" }}>
@@ -564,6 +625,8 @@ export default function App() {
         @media (min-width: 900px) { .sidebar-ad-left { display: flex !important; } }
         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 0.5; }
         *:focus-visible { outline: 2px solid #002B7F; outline-offset: 2px; border-radius: 4px; }
+        .topnav-links { -ms-overflow-style: none; scrollbar-width: none; }
+        .topnav-links::-webkit-scrollbar { display: none; }
       `}</style>
     </div>
   );
