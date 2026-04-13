@@ -254,11 +254,14 @@ function SalaryCalc() {
         <label style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#64748B", marginBottom: 6, fontFamily: "'Geist Mono','Courier New',monospace" }}>Persoane in intretinere</label>
         <Selector label="Persoane in intretinere" options={[{ label: "0", value: "0" }, { label: "1", value: "1" }, { label: "2", value: "2" }, { label: "3+", value: "3" }]} value={dependenti} onChange={setDependenti} />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Salariu Net" value={formatRON(r.net)} accent="#059669" sub="in mana / luna" />
         <Stat label="Salariu Brut" value={formatRON(r.brut)} accent="#1a4faf" sub="brut / luna" />
         <Stat label="Cost Angajator" value={formatRON(r.costAngajator)} accent="#D4A017" sub="total firma" />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 2, color: "#94A3B8", marginBottom: 12, fontFamily: "'Geist Mono','Courier New',monospace" }}>Detalii Contributii</div>
       <BarChart items={[
         { label: "CAS (25%)", value: r.cas, color: "linear-gradient(90deg,#CE1126,#e8394d)" },
@@ -290,10 +293,13 @@ function PFACalc() {
       <Selector label="Sistem impozitare PFA" options={[{ label: "SISTEM REAL", value: "real" }, { label: "NORMA VENIT", value: "norma" }]} value={tip} onChange={setTip} />
       <Input id="pfa-venit" label="Venit Brut Anual" value={venit} onChange={setVenit} suffix="LEI / an" min="0" />
       {tip === "real" && <Input id="pfa-chelt" label="Cheltuieli Deductibile" value={cheltuieli} onChange={setCheltuieli} suffix="LEI / an" min="0" />}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Venit Net Anual" value={formatRON(r.venitDupaImpozitare)} accent="#059669" sub={`~${formatRON(r.venitDupaImpozitare / 12)} lei/luna`} />
         <Stat label="Total Taxe" value={formatRON(r.totalTaxe)} accent="#CE1126" sub={`${((r.totalTaxe / (r.venitNet || 1)) * 100).toFixed(1)}% rata efectiva`} />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <BarChart items={[
         { label: "Impozit (10%)", value: r.impozit, color: "linear-gradient(90deg,#002B7F,#1a4faf)" },
         { label: "CAS (25%)", value: r.cas, color: "linear-gradient(90deg,#CE1126,#e8394d)" },
@@ -360,11 +366,14 @@ function MortgageCalc() {
         <Input id="cr-dobanda" label="Dobanda Anuala" value={dobanda} onChange={setDobanda} suffix="%" step="0.1" min="0" max="50" />
         <Input id="cr-ani" label="Perioada" value={ani} onChange={setAni} suffix="ANI" min="1" max="35" />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Rata Lunara" value={formatRON(r.rataLunara)} accent="#1a4faf" sub="lei / luna" />
         <Stat label="Total Platit" value={formatRON(r.totalPlatit)} accent="#D4A017" sub={`in ${ani} ani`} />
         <Stat label="Total Dobanda" value={formatRON(r.totalDobanda)} accent="#CE1126" sub={`${((r.totalDobanda / (r.totalPlatit || 1)) * 100).toFixed(0)}% din total`} />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#94A3B8", marginBottom: 8, fontFamily: "'Geist Mono','Courier New',monospace" }}>Principal vs Dobanda</div>
       <div style={{ height: 36, borderRadius: 10, overflow: "hidden", display: "flex", marginBottom: 8 }}>
         <div style={{ width: `${principalPct}%`, background: "linear-gradient(90deg,#002B7F,#1a4faf)", display: "flex", alignItems: "center", justifyContent: "center", transition: "width 0.5s" }}>
@@ -490,6 +499,9 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: bg, color: textMain, fontFamily: "'Geist Mono','Courier New',monospace", transition: "background 0.3s, color 0.3s" }}>
+      {/* Skip to content — visible on keyboard focus */}
+      <a href="#main-content" className="skip-link">Sari la conținut</a>
+
       {/* Romanian flag stripe */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 5, display: "flex", zIndex: 9999, pointerEvents: "none" }}>
         <div style={{ flex: 1, background: "#002B7F" }} />
@@ -506,7 +518,7 @@ export default function App() {
         </div>
 
         {/* MAIN CONTENT */}
-        <main style={{ width: "100%", maxWidth: 640 }}>
+        <main id="main-content" style={{ width: "100%", maxWidth: 640 }}>
           {/* Header */}
           <header style={{ marginBottom: 40, textAlign: "center" }}>
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 12, fontFamily: "'Geist Mono','Courier New',monospace" }}>Financial Instruments Romania 2026</div>
@@ -561,6 +573,37 @@ export default function App() {
 
       {/* Responsive CSS for sidebar ad */}
       <style>{`
+        .skip-link {
+          clip: rect(0 0 0 0);
+          clip-path: inset(50%);
+          height: 1px;
+          overflow: hidden;
+          position: absolute;
+          white-space: nowrap;
+          width: 1px;
+          text-decoration: none;
+        }
+        .skip-link:focus {
+          clip: auto;
+          clip-path: none;
+          height: auto;
+          overflow: visible;
+          position: fixed;
+          left: 50%;
+          top: 14px;
+          transform: translateX(-50%);
+          width: auto;
+          z-index: 10001;
+          background: #002B7F;
+          color: #fff;
+          padding: 8px 20px;
+          border-radius: 8px;
+          font-family: 'Geist Mono','Courier New',monospace;
+          font-size: 13px;
+          font-weight: 600;
+          border: 2px solid #FCD116;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
         @media (min-width: 900px) { .sidebar-ad-left { display: flex !important; } }
         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 0.5; }
         *:focus-visible { outline: 2px solid #002B7F; outline-offset: 2px; border-radius: 4px; }
