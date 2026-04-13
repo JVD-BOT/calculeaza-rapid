@@ -285,7 +285,7 @@ function Input({ label, value, onChange, suffix, type = "number", step, min = "0
   return (
     <div style={{ marginBottom: 16 }}>
       <label htmlFor={id} style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#64748B", marginBottom: 6, fontFamily: "'Geist Mono','Courier New',monospace" }}>{label}</label>
-      <div style={{ display: "flex", alignItems: "center", background: "rgba(0,43,127,0.04)", border: "1px solid rgba(0,43,127,0.08)", borderRadius: 10, overflow: "hidden" }}>
+      <div className="input-wrap" style={{ display: "flex", alignItems: "center", background: "rgba(0,43,127,0.04)", border: "1px solid rgba(0,43,127,0.08)", borderRadius: 10, overflow: "hidden" }}>
         <input id={id} type={type} value={value} onChange={e => onChange(e.target.value)} step={step} min={min} max={max}
           style={{ flex: 1, padding: "12px 14px", background: "transparent", border: "none", color: "#0D1117", fontSize: 16, fontFamily: "'Geist Mono','Courier New',monospace", outline: "none", width: "100%" }} />
         {suffix && <span style={{ padding: "0 14px", color: "#94A3B8", fontSize: 13, fontFamily: "'Geist Mono','Courier New',monospace", whiteSpace: "nowrap" }}>{suffix}</span>}
@@ -296,9 +296,9 @@ function Input({ label, value, onChange, suffix, type = "number", step, min = "0
 
 function Toggle({ label, checked, onChange, id }) {
   return (
-    <label htmlFor={id} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", marginBottom: 12 }}>
+    <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", marginBottom: 12 }}>
       <div id={id} role="switch" aria-checked={checked} onClick={() => onChange(!checked)} onKeyDown={e => e.key === ' ' && onChange(!checked)} tabIndex={0}
-        style={{ width: 40, height: 22, borderRadius: 11, background: checked ? "#002B7F" : "rgba(0,43,127,0.06)", position: "relative", transition: "background 0.2s", cursor: "pointer" }}>
+        style={{ width: 40, height: 22, borderRadius: 11, background: checked ? "#002B7F" : "rgba(0,43,127,0.06)", position: "relative", transition: "background 0.2s", cursor: "pointer", flexShrink: 0 }}>
         <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#fff", position: "absolute", top: 3, left: checked ? 21 : 3, transition: "left 0.2s" }} />
       </div>
       <span style={{ fontSize: 13, color: "#475569", fontFamily: "'Geist Mono','Courier New',monospace" }}>{label}</span>
@@ -769,6 +769,7 @@ export default function App() {
         @media (min-width: 900px) { .sidebar-ad-left { display: flex !important; } }
         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 0.5; }
         *:focus-visible { outline: 2px solid #002B7F; outline-offset: 2px; border-radius: 4px; }
+        .input-wrap:focus-within { outline: 2px solid #002B7F; outline-offset: 0; border-radius: 10px; }
         .topnav-links { -ms-overflow-style: none; scrollbar-width: none; }
         .topnav-links::-webkit-scrollbar { display: none; }
       `}</style>
