@@ -117,7 +117,7 @@ export default function PrivacyPolicy() {
           Pentru orice solicitare legată de datele tale personale, te rugăm să ne contactezi la:
         </p>
         <p style={{ ...s.p, padding: "12px 16px", background: "rgba(0,43,127,0.04)", borderRadius: 10, borderLeft: "3px solid #002B7F" }}>
-          <strong>E-mail:</strong> <a href="mailto:contact@calculeazarapid.ro" style={{ color: "#1a4faf" }}>contact@calculeazarapid.ro</a>
+          <strong>E-mail:</strong> <a href="mailto:jrvdbot@gmail.com" style={{ color: "#1a4faf" }}>jrvdbot@gmail.com</a>
           <br />
           <strong>Site:</strong> <a href="https://calculeazarapid.ro" style={{ color: "#1a4faf" }}>https://calculeazarapid.ro</a>
         </p>
@@ -286,7 +286,7 @@ export default function PrivacyPolicy() {
           datelor tale, ne poți contacta la:
         </p>
         <p style={{ ...s.p, padding: "12px 16px", background: "rgba(0,43,127,0.04)", borderRadius: 10, borderLeft: "3px solid #002B7F" }}>
-          <strong>E-mail:</strong> <a href="mailto:contact@calculeazarapid.ro" style={{ color: "#1a4faf" }}>contact@calculeazarapid.ro</a><br />
+          <strong>E-mail:</strong> <a href="mailto:jrvdbot@gmail.com" style={{ color: "#1a4faf" }}>jrvdbot@gmail.com</a><br />
           <strong>Site:</strong> <a href="https://calculeazarapid.ro" style={{ color: "#1a4faf" }}>https://calculeazarapid.ro</a>
         </p>
 
