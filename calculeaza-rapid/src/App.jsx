@@ -1,5 +1,97 @@
 import { useState, useEffect, useCallback } from "react";
 
+// --- GDPR / COOKIE CONSENT ---
+const GA_ID = "G-FY9HZNPJV5";
+const CONSENT_KEY = "cr_cookie_consent";
+
+function loadGA() {
+  if (window._crGaLoaded) return;
+  window._crGaLoaded = true;
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", GA_ID);
+}
+
+function CookieBanner({ dark }) {
+  const [visible, setVisible] = useState(() => !localStorage.getItem(CONSENT_KEY));
+
+  useEffect(() => {
+    // If user already accepted in a prior session, load GA immediately
+    if (localStorage.getItem(CONSENT_KEY) === "accepted") loadGA();
+  }, []);
+
+  if (!visible) return null;
+
+  const handleAccept = () => {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+    loadGA();
+    setVisible(false);
+  };
+  const handleRefuse = () => {
+    localStorage.setItem(CONSENT_KEY, "refused");
+    setVisible(false);
+  };
+
+  const bg = dark ? "rgba(15,23,42,0.97)" : "rgba(255,255,255,0.97)";
+  const borderColor = dark ? "rgba(255,255,255,0.09)" : "rgba(0,43,127,0.09)";
+  const textColor = dark ? "#e2e8f0" : "#0D1117";
+  const refuseBtnBorder = dark ? "rgba(255,255,255,0.15)" : "rgba(0,43,127,0.15)";
+
+  return (
+    <div role="dialog" aria-modal="false" aria-label="Consimțământ cookie-uri"
+      style={{
+        position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 8000,
+        background: bg,
+        backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+        borderTop: `1px solid ${borderColor}`,
+        padding: "14px 20px",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        gap: 16, flexWrap: "wrap",
+      }}>
+      <p style={{
+        margin: 0, flex: 1, minWidth: 220,
+        fontSize: 13, color: textColor, lineHeight: 1.6,
+        fontFamily: "'Geist Mono','Courier New',monospace",
+      }}>
+        Acest site folosește cookies pentru analiză. Continuând, ești de acord.{" "}
+        <a href="/politica-confidentialitate"
+          style={{ color: "#1a4faf", textDecoration: "underline", whiteSpace: "nowrap" }}>
+          Politica de confidentialitate
+        </a>
+      </p>
+      <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <button onClick={handleRefuse}
+          style={{
+            padding: "8px 18px", borderRadius: 8,
+            border: `1px solid ${refuseBtnBorder}`,
+            background: "transparent", color: textColor,
+            fontSize: 12, fontWeight: 600, letterSpacing: 0.5,
+            fontFamily: "'Geist Mono','Courier New',monospace",
+            cursor: "pointer", transition: "opacity 0.15s",
+          }}>
+          Refuză
+        </button>
+        <button onClick={handleAccept}
+          style={{
+            padding: "8px 18px", borderRadius: 8,
+            border: "none",
+            background: "#002B7F", color: "#fff",
+            fontSize: 12, fontWeight: 600, letterSpacing: 0.5,
+            fontFamily: "'Geist Mono','Courier New',monospace",
+            cursor: "pointer", transition: "opacity 0.15s",
+          }}>
+          Accept
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // --- ADSENSE SIDEBAR ---
 function SidebarAd() {
   useEffect(() => {
@@ -612,6 +704,12 @@ export default function App() {
               <div>Calculele au caracter orientativ · Nu constituie consultanta fiscala</div>
               <div>Actualizat conform Codului Fiscal 2026 · Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
               <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazaRapid.ro — built with ♥ for Romania</div>
+              <div style={{ marginTop: 8 }}>
+                <a href="/politica-confidentialitate"
+                  style={{ fontSize: 10, color: "#64748B", fontFamily: "'Geist Mono',monospace", textDecoration: "underline" }}>
+                  Politica de Confidentialitate
+                </a>
+              </div>
             </div>
           </footer>
         </main>
@@ -619,6 +717,9 @@ export default function App() {
 
       {/* Dark mode toggle */}
       <DarkModeToggle dark={dark} setDark={setDark} />
+
+      {/* GDPR cookie consent banner */}
+      <CookieBanner dark={dark} />
 
       {/* Responsive CSS for sidebar ad */}
       <style>{`
