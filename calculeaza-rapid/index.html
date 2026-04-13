@@ -1,46 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ro">
     <head>
-          <!-- Google tag (gtag.js) -->
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY9HZNPJV5"></script>
-          <script>
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'G-FY9HZNhPJV5');
-          </script>
+          <!-- Google Analytics is loaded conditionally after cookie consent (see CookieBanner in App.jsx) -->
           <meta charset="UTF-8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist+Mono:wght@300;400;500&display=swap" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="theme-color" content="#002B7F" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Calculate Tax in Romania 2026 — Free Salary, PFA &amp; Credit Calculator</title>
-        <meta name="description" content="Calculate tax in Romania for free. Gross-to-net salary calculator, PFA tax calculator, and mortgage simulation — updated for the 2026 Romanian Fiscal Code. Instant results." />
+          <title>Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA &amp; Credit Ipotecar | CalculeazaRapid</title>
+        <meta name="description" content="Calculator gratuit impozit Romania 2026. Calculeaza salariu brut-net, taxe PFA si rata credit ipotecar. Actualizat conform Codului Fiscal 2026." />
         <meta name="keywords" content="calculate tax Romania, Romania tax calculator 2026, salary calculator Romania, gross net salary Romania, PFA tax Romania, income tax Romania, calcul impozit Romania, calculator salariu brut net, taxe PFA 2026, impozit salariu Romania" />
     
         <!-- Open Graph -->
-        <meta property="og:title" content="Calculate Tax in Romania 2026 — Free Salary, PFA &amp; Credit Calculator" />
-        <meta property="og:description" content="Free Romanian tax calculator. Compute gross-to-net salary, PFA taxes, and mortgage payments instantly — updated for the 2026 Fiscal Code." />
+        <meta property="og:title" content="Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA &amp; Credit Ipotecar | CalculeazaRapid" />
+        <meta property="og:description" content="Calculator gratuit impozit Romania 2026. Calculeaza salariu brut-net, taxe PFA si rata credit ipotecar. Actualizat conform Codului Fiscal 2026." />
         <meta property="og:type" content="website" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:locale:alternate" content="ro_RO" />
+        <meta property="og:locale" content="ro_RO" />
         <meta property="og:url" content="https://calculeazarapid.ro/" />
-        <meta property="og:image" content="https://calculeaza-rapid.vercel.app/og-image.png" />
+        <meta property="og:image" content="https://calculeazarapid.ro/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="400" />
-    
+
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Calculate Tax in Romania 2026 — Free Salary, PFA &amp; Credit Calculator" />
-        <meta name="twitter:description" content="Free Romanian tax calculator. Compute gross-to-net salary, PFA taxes, and mortgage payments instantly." />
-        <meta name="twitter:image" content="https://calculeaza-rapid.vercel.app/og-image.png" />
+        <meta name="twitter:title" content="Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA &amp; Credit Ipotecar | CalculeazaRapid" />
+        <meta name="twitter:description" content="Calculator gratuit impozit Romania 2026. Calculeaza salariu brut-net, taxe PFA si rata credit ipotecar. Actualizat conform Codului Fiscal 2026." />
+        <meta name="twitter:image" content="https://calculeazarapid.ro/og-image.png" />
     
         <!-- SEO -->
         <meta name="robots" content="index, follow" />
         <meta name="google-site-verification" content="3NEw7iQMwWV1vuj0gA-9twY1NyN-hZiixXptBZU1s3Y" />
-        <link rel="canonical" href="https://calculeazarapid.ro" />
-        <link rel="alternate" hreflang="en" href="https://calculeazarapid.ro/" />
+        <meta name="google-site-verification" content="6Dq4FCXywBeqpYwI8TmidNYuXCQvsUyaKi98JA88q3s" />
+        <link rel="canonical" href="https://calculeazarapid.ro/" />
         <link rel="alternate" hreflang="ro" href="https://calculeazarapid.ro/" />
         <link rel="alternate" hreflang="x-default" href="https://calculeazarapid.ro/" />
     
@@ -48,13 +44,13 @@
             {
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Calculate Tax in Romania — CalculeazaRapid",
+              "name": "CalculeazaRapid",
               "url": "https://calculeazarapid.ro/",
-              "description": "Free online tool to calculate tax in Romania. Compute gross-to-net salary, PFA taxes and contributions, and mortgage simulations — updated for the 2026 Romanian Fiscal Code.",
+              "description": "Calculator gratuit impozit Romania 2026. Calculeaza salariu brut-net, taxe PFA si rata credit ipotecar. Actualizat conform Codului Fiscal 2026.",
               "applicationCategory": "FinanceApplication",
               "operatingSystem": "All",
               "browserRequirements": "Requires JavaScript",
-              "inLanguage": ["en", "ro"],
+              "inLanguage": "ro",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -82,34 +78,10 @@
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "How do I calculate income tax in Romania?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use our free calculator to instantly compute your net salary from any gross amount based on the 2026 Romanian Fiscal Code."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What is the income tax rate in Romania in 2026?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Romania applies a flat income tax rate of 10% on salaries and most personal income. Employees also pay CAS (25% pension) and CASS (10% health). Employers pay CAM (2.25%). IT professionals earning over 10,000 lei gross are exempt from income tax."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "How much net salary will I get from a 5000 lei gross salary in Romania?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "For a gross salary of 5,000 lei in Romania (2026), the net take-home salary is approximately 2,925 lei per month after deducting CAS (1,250 lei), CASS (500 lei), and income tax (325 lei)."
-                  }
-                },
-                {
-                  "@type": "Question",
                   "name": "Cum calculez impozitul pe salariu in Romania?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Impozitul pe venit in Romania este de 10% aplicat la baza impozabila, dupa deducerea CAS (25%) si CASS (10%). Folositi calculatorul de mai sus pentru a afla salariul net din brut, actualizat conform Codului Fiscal 2026."
+                    "text": "Impozitul pe venit in Romania este de 10% aplicat la baza impozabila, dupa deducerea CAS (25%) si CASS (10%). Folositi calculatorul de mai sus pentru a afla salariul net din brut in cateva secunde, actualizat conform Codului Fiscal 2026."
                   }
                 },
                 {
@@ -117,15 +89,15 @@
                   "name": "Care este cota de impozit pe venit in Romania in 2026?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Romania aplica o cota unica de impozit pe venit de 10% pentru salarii. Angajatii platesc si CAS 25% (pensie) si CASS 10% (sanatate). Angajatorul plateste CAM 2,25%. Angajatii IT cu salariu brut peste 10.000 lei sunt scutiti de impozit."
+                    "text": "Romania aplica o cota unica de impozit pe venit de 10% pentru salarii si majoritatea veniturilor persoanelor fizice. Angajatii platesc si CAS 25% (pensie) si CASS 10% (sanatate). Angajatorul plateste CAM (2,25%). Angajatii IT cu salariu brut peste 10.000 lei sunt scutiti de impozit."
                   }
                 },
                 {
                   "@type": "Question",
-                  "name": "Cat salariu net primesc din 5000 lei brut in Romania?",
+                  "name": "Cum calculez taxele pentru PFA in Romania?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/luna dupa deducerea CAS (1.250 lei), CASS (500 lei) si impozit (325 lei). Introduceti orice suma in calculator pentru rezultate instant."
+                    "text": "Taxele PFA in Romania includ impozit pe venit 10%, CAS 25% (calculat la 24x salariul minim brut anual) si CASS 10% (calculat la minimum 6x salariul minim, maxim 60x). Accesati tab-ul PFA de mai sus pentru un calcul complet pentru 2026."
                   }
                 },
                 {
@@ -133,7 +105,63 @@
                   "name": "Care este salariul minim brut in Romania in 2026?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Salariul minim brut pe economie in Romania in 2026 este de 4.050 lei pe luna, corespunzand unui salariu net de aproximativ 2.363 lei pe luna."
+                    "text": "Salariul minim brut pe economie in Romania in 2026 este de 4.050 lei pe luna, ceea ce corespunde unui salariu net de aproximativ 2.363 lei pe luna."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Cat salariu net primesc din 5.000 lei brut in Romania?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Pentru un salariu brut de 5.000 lei (2026), salariul net este de aproximativ 2.925 lei/luna dupa deducerea CAS (1.250 lei), CASS (500 lei) si impozit (325 lei). Introduceti orice suma in calculator pentru rezultate instant."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Ce contributii plateste angajatul in Romania?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Angajatul din Romania plateste trei contributii: CAS 25% (contributia la pensie), CASS 10% (contributia la sanatate) si impozit pe venit 10% (calculat la baza impozabila dupa deducerea CAS si CASS). Angajatorul plateste suplimentar CAM 2,25%."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Cum se calculeaza deducerea personala in Romania 2026?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Deducerea personala se aplica pentru salarii brute intre 4.050 si 4.300 lei pe luna. Valoarea este 300 lei fara persoane in intretinere, 400 lei pentru 1 persoana, 800 lei pentru 2, si 1.310 lei pentru 3 sau mai multe persoane in intretinere."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I calculate income tax in Romania?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use the salary calculator above to instantly compute your net salary from any gross amount, based on the 2026 Romanian Fiscal Code."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the income tax rate in Romania in 2026?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Romania applies a flat income tax rate of 10% on salaries and most personal income. Employees also pay CAS 25% (pension) and CASS 10% (health). Employers pay CAM (2.25%). IT professionals earning over 10,000 lei gross are exempt from income tax."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I calculate PFA taxes in Romania?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "PFA taxes in Romania include 10% income tax, CAS 25% (based on 24x the annual minimum wage) and CASS 10% (based on a minimum of 6x the minimum wage, up to 60x). Use the PFA tab above for a complete 2026 calculation."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much net salary will I get from a 5,000 lei gross salary in Romania?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results."
                   }
                 }
               ]
@@ -175,8 +203,239 @@
               <p style="font-size:12px;color:#888;margin-top:32px;">Calculele au caracter orientativ si nu constituie consultanta fiscala. Actualizat conform Codului Fiscal 2026. Salariu minim brut: 4.050 lei/luna.</p>
         </main>
   
-      <!-- React app mounts here and replaces static content -->
-      <div id="root"></div>
+      <!-- React app mounts here and replaces static content.
+           The shell below is shown before JS hydrates: prevents CLS, serves crawlers,
+           and gives no-JS users a readable form layout. React replaces it on mount. -->
+      <div id="root">
+        <div style="min-height:100vh;background:#F7F8FC;color:#0D1117;font-family:'Courier New',monospace">
+          <!-- Romanian flag stripe -->
+          <div style="position:fixed;top:0;left:0;right:0;height:5px;display:flex;z-index:9999;pointer-events:none">
+            <div style="flex:1;background:#002B7F"></div>
+            <div style="flex:1;background:#FCD116"></div>
+            <div style="flex:1;background:#CE1126"></div>
+          </div>
+
+          <div style="max-width:640px;margin:0 auto;padding:45px 20px 60px">
+            <!-- Header -->
+            <header style="margin-bottom:40px;text-align:center">
+              <div style="font-size:11px;letter-spacing:4px;color:#002B7F;text-transform:uppercase;margin-bottom:12px">Financial Instruments Romania 2026</div>
+              <h1 style="font-size:clamp(32px,7vw,52px);font-family:sans-serif;font-weight:400;line-height:1.05;margin:0;color:#0D1117">
+                Calculator Impozit <span style="color:#002B7F">Romania</span>
+              </h1>
+              <p style="font-size:13px;color:#64748B;margin:10px auto 0;line-height:1.5;max-width:400px">
+                Calculator gratuit impozit Romania 2026 — salariu brut-net, taxe PFA, credit ipotecar
+              </p>
+            </header>
+
+            <!-- Tab navigation -->
+            <nav aria-label="Calculator tabs" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:32px;background:rgba(0,43,127,0.03);border-radius:16px;padding:6px;border:1px solid rgba(0,43,127,0.05)">
+              <div style="padding:14px 8px;border-radius:12px;background:rgba(0,43,127,0.08);display:flex;flex-direction:column;align-items:center;gap:4px">
+                <span aria-hidden="true">💰</span>
+                <span style="font-size:13px;font-weight:600;color:#1a4faf">Salariu</span>
+                <span style="font-size:10px;color:#002B7F">Calculator Brut ↔ Net</span>
+              </div>
+              <div style="padding:14px 8px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:4px">
+                <span aria-hidden="true">📋</span>
+                <span style="font-size:13px;font-weight:600;color:#64748B">PFA</span>
+                <span style="font-size:10px;color:#CBD5E1">Taxe &amp; Contributii</span>
+              </div>
+              <div style="padding:14px 8px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:4px">
+                <span aria-hidden="true">🏠</span>
+                <span style="font-size:13px;font-weight:600;color:#64748B">Credit</span>
+                <span style="font-size:10px;color:#CBD5E1">Simulare Ipotecar</span>
+              </div>
+            </nav>
+
+            <!-- ═══ SALARY CALCULATOR SHELL (default tab, visible) ═══ -->
+            <section id="shell-salariu" aria-label="Calculator Salariu Brut Net Romania 2026">
+              <div style="background:rgba(0,43,127,0.03);border:1px solid rgba(0,43,127,0.05);border-radius:20px;padding:28px 24px;min-height:540px">
+
+                <noscript>
+                  <p style="color:#CE1126;font-size:13px;padding:12px 14px;background:rgba(206,17,38,0.06);border:1px solid rgba(206,17,38,0.15);border-radius:8px;margin:0 0 16px 0;font-family:sans-serif">
+                    &#9888; Activează JavaScript pentru a folosi calculatorul de salariu brut-net.
+                  </p>
+                </noscript>
+
+                <!-- Mode selector -->
+                <fieldset style="border:none;padding:0;margin:0 0 16px 0">
+                  <legend style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px;padding:0">Mod calcul salariu</legend>
+                  <div style="display:flex;gap:4px;background:rgba(0,43,127,0.04);border-radius:10px;padding:3px">
+                    <button disabled aria-pressed="true"  style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:rgba(0,43,127,0.1);color:#1a4faf;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default;letter-spacing:.5px">BRUT → NET</button>
+                    <button disabled aria-pressed="false" style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:transparent;color:#64748B;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default;letter-spacing:.5px">NET → BRUT</button>
+                  </div>
+                </fieldset>
+
+                <!-- Salary amount input -->
+                <div style="margin-bottom:16px">
+                  <label for="sal-amount-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Salariu Brut</label>
+                  <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                    <input id="sal-amount-static" type="number" value="5000" disabled min="0"
+                      style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                    <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">LEI / luna</span>
+                  </div>
+                </div>
+
+                <!-- IT-exempt toggle (off by default) -->
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                  <div role="switch" aria-checked="false" style="width:40px;height:22px;border-radius:11px;background:rgba(0,43,127,0.06);position:relative;flex-shrink:0">
+                    <div style="width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:3px;left:3px;box-shadow:0 1px 3px rgba(0,0,0,.15)"></div>
+                  </div>
+                  <span style="font-size:13px;color:#475569">Scutit impozit IT (&gt;10.000 lei brut)</span>
+                </div>
+
+                <!-- Dependenti selector -->
+                <div style="margin-bottom:16px">
+                  <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Persoane in intretinere</div>
+                  <div role="group" aria-label="Persoane in intretinere" style="display:flex;gap:4px;background:rgba(0,43,127,0.04);border-radius:10px;padding:3px">
+                    <button disabled aria-pressed="true"  style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:rgba(0,43,127,0.1);color:#1a4faf;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default">0</button>
+                    <button disabled aria-pressed="false" style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:transparent;color:#64748B;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default">1</button>
+                    <button disabled aria-pressed="false" style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:transparent;color:#64748B;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default">2</button>
+                    <button disabled aria-pressed="false" style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:transparent;color:#64748B;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default">3+</button>
+                  </div>
+                </div>
+
+                <!-- Pre-computed results: brut=5000, 0 dep, no IT
+                     CAS=1250, CASS=500, impozit=325, CAM=113, net=2925, costAngajator=5113 -->
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:rgba(0,43,127,0.03);border-radius:14px;padding:8px 0;margin-bottom:20px;border:1px solid rgba(0,43,127,0.05)">
+                  <div style="text-align:center;padding:16px 6px">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Salariu Net</div>
+                    <div style="font-size:clamp(16px,4.5vw,28px);font-weight:700;color:#059669;font-family:sans-serif;line-height:1.1">2.925,00</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:4px">in mana / luna</div>
+                  </div>
+                  <div style="text-align:center;padding:16px 6px">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Salariu Brut</div>
+                    <div style="font-size:clamp(16px,4.5vw,28px);font-weight:700;color:#1a4faf;font-family:sans-serif;line-height:1.1">5.000,00</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:4px">brut / luna</div>
+                  </div>
+                  <div style="text-align:center;padding:16px 6px">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Cost Angajator</div>
+                    <div style="font-size:clamp(16px,4.5vw,28px);font-weight:700;color:#D4A017;font-family:sans-serif;line-height:1.1">5.113,00</div>
+                    <div style="font-size:11px;color:#94A3B8;margin-top:4px">total firma</div>
+                  </div>
+                </div>
+
+                <!-- Contributions bar chart (pre-computed, maxVal=5113) -->
+                <div style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#94A3B8;margin-bottom:12px">Detalii Contributii</div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:120px;font-size:12px;color:#64748B;text-align:right;flex-shrink:0">CAS (25%)</span>
+                    <div style="flex:1;height:28px;background:rgba(0,43,127,0.04);border-radius:6px;overflow:hidden">
+                      <div style="width:24.45%;height:100%;background:linear-gradient(90deg,#CE1126,#e8394d);border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+                        <span style="font-size:11px;color:#fff;font-weight:600;white-space:nowrap">1.250,00 lei</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:120px;font-size:12px;color:#64748B;text-align:right;flex-shrink:0">CASS (10%)</span>
+                    <div style="flex:1;height:28px;background:rgba(0,43,127,0.04);border-radius:6px;overflow:hidden">
+                      <div style="width:9.78%;height:100%;background:linear-gradient(90deg,#D4A017,#FCD116);border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+                        <span style="font-size:11px;color:#fff;font-weight:600;white-space:nowrap">500,00 lei</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:120px;font-size:12px;color:#64748B;text-align:right;flex-shrink:0">Impozit (10%)</span>
+                    <div style="flex:1;height:28px;background:rgba(0,43,127,0.04);border-radius:6px;overflow:hidden">
+                      <div style="width:6.36%;height:100%;background:linear-gradient(90deg,#002B7F,#1a4faf);border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+                        <span style="font-size:11px;color:#fff;font-weight:600;white-space:nowrap">325,00 lei</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:120px;font-size:12px;color:#64748B;text-align:right;flex-shrink:0">CAM (2.25%)</span>
+                    <div style="flex:1;height:28px;background:rgba(0,43,127,0.04);border-radius:6px;overflow:hidden">
+                      <div style="width:2.21%;height:100%;background:linear-gradient(90deg,#1a4faf,#4070d0);border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+                        <span style="font-size:11px;color:#fff;font-weight:600;white-space:nowrap">113,00 lei</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="width:120px;font-size:12px;color:#64748B;text-align:right;flex-shrink:0">Net</span>
+                    <div style="flex:1;height:28px;background:rgba(0,43,127,0.04);border-radius:6px;overflow:hidden">
+                      <div style="width:57.21%;height:100%;background:linear-gradient(90deg,#059669,#10b981);border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+                        <span style="font-size:11px;color:#fff;font-weight:600;white-space:nowrap">2.925,00 lei</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- ═══ PFA CALCULATOR SHELL (hidden visually, readable by crawlers) ═══ -->
+            <section id="shell-pfa" aria-label="Calculator PFA Taxe si Contributii Romania 2026" style="display:none">
+              <noscript>
+                <p style="color:#CE1126;font-size:13px;padding:12px 14px;background:rgba(206,17,38,0.06);border:1px solid rgba(206,17,38,0.15);border-radius:8px;margin:0 0 16px 0;font-family:sans-serif">
+                  &#9888; Activează JavaScript pentru a folosi calculatorul de taxe PFA.
+                </p>
+              </noscript>
+              <div style="background:rgba(0,43,127,0.03);border:1px solid rgba(0,43,127,0.05);border-radius:20px;padding:28px 24px">
+                <fieldset style="border:none;padding:0;margin:0 0 16px 0">
+                  <legend style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px;padding:0">Sistem impozitare PFA</legend>
+                  <div style="display:flex;gap:4px;background:rgba(0,43,127,0.04);border-radius:10px;padding:3px">
+                    <button disabled aria-pressed="true"  style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:rgba(0,43,127,0.1);color:#1a4faf;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default;letter-spacing:.5px">SISTEM REAL</button>
+                    <button disabled aria-pressed="false" style="flex:1;padding:10px 8px;border:none;border-radius:8px;background:transparent;color:#64748B;font-size:12px;font-weight:600;font-family:'Courier New',monospace;cursor:default;letter-spacing:.5px">NORMA VENIT</button>
+                  </div>
+                </fieldset>
+                <div style="margin-bottom:16px">
+                  <label for="pfa-venit-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Venit Brut Anual</label>
+                  <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                    <input id="pfa-venit-static" type="number" value="120000" disabled min="0"
+                      style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                    <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">LEI / an</span>
+                  </div>
+                </div>
+                <div style="margin-bottom:16px">
+                  <label for="pfa-chelt-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Cheltuieli Deductibile</label>
+                  <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                    <input id="pfa-chelt-static" type="number" value="30000" disabled min="0"
+                      style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                    <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">LEI / an</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ═══ CREDIT CALCULATOR SHELL (hidden visually, readable by crawlers) ═══ -->
+            <section id="shell-credit" aria-label="Calculator Credit Ipotecar Romania 2026" style="display:none">
+              <noscript>
+                <p style="color:#CE1126;font-size:13px;padding:12px 14px;background:rgba(206,17,38,0.06);border:1px solid rgba(206,17,38,0.15);border-radius:8px;margin:0 0 16px 0;font-family:sans-serif">
+                  &#9888; Activează JavaScript pentru a folosi simulatorul de credit ipotecar.
+                </p>
+              </noscript>
+              <div style="background:rgba(0,43,127,0.03);border:1px solid rgba(0,43,127,0.05);border-radius:20px;padding:28px 24px">
+                <div style="margin-bottom:16px">
+                  <label for="cr-suma-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Suma Credit</label>
+                  <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                    <input id="cr-suma-static" type="number" value="300000" disabled min="0"
+                      style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                    <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">LEI</span>
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                  <div>
+                    <label for="cr-dobanda-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Dobanda Anuala</label>
+                    <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                      <input id="cr-dobanda-static" type="number" value="7.5" disabled min="0" max="50" step="0.1"
+                        style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                      <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">%</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label for="cr-ani-static" style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#64748B;margin-bottom:6px">Perioada</label>
+                    <div style="display:flex;align-items:center;background:rgba(0,43,127,0.04);border:1px solid rgba(0,43,127,0.08);border-radius:10px;overflow:hidden">
+                      <input id="cr-ani-static" type="number" value="25" disabled min="1" max="35"
+                        style="flex:1;padding:12px 14px;background:transparent;border:none;color:#0D1117;font-size:16px;font-family:'Courier New',monospace;outline:none;width:100%" />
+                      <span style="padding:0 14px;color:#94A3B8;font-size:13px;white-space:nowrap">ANI</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
   
       <!-- AdSense loaded after publisher content is present in DOM -->
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1844899396773709" crossorigin="anonymous"></script>

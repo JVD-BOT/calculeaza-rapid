@@ -1,5 +1,97 @@
 import { useState, useEffect, useCallback } from "react";
 
+// --- GDPR / COOKIE CONSENT ---
+const GA_ID = "G-FY9HZNPJV5";
+const CONSENT_KEY = "cr_cookie_consent";
+
+function loadGA() {
+  if (window._crGaLoaded) return;
+  window._crGaLoaded = true;
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", GA_ID);
+}
+
+function CookieBanner({ dark }) {
+  const [visible, setVisible] = useState(() => !localStorage.getItem(CONSENT_KEY));
+
+  useEffect(() => {
+    // If user already accepted in a prior session, load GA immediately
+    if (localStorage.getItem(CONSENT_KEY) === "accepted") loadGA();
+  }, []);
+
+  if (!visible) return null;
+
+  const handleAccept = () => {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+    loadGA();
+    setVisible(false);
+  };
+  const handleRefuse = () => {
+    localStorage.setItem(CONSENT_KEY, "refused");
+    setVisible(false);
+  };
+
+  const bg = dark ? "rgba(15,23,42,0.97)" : "rgba(255,255,255,0.97)";
+  const borderColor = dark ? "rgba(255,255,255,0.09)" : "rgba(0,43,127,0.09)";
+  const textColor = dark ? "#e2e8f0" : "#0D1117";
+  const refuseBtnBorder = dark ? "rgba(255,255,255,0.15)" : "rgba(0,43,127,0.15)";
+
+  return (
+    <div role="dialog" aria-modal="false" aria-label="Consimțământ cookie-uri"
+      style={{
+        position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 8000,
+        background: bg,
+        backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+        borderTop: `1px solid ${borderColor}`,
+        padding: "14px 20px",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        gap: 16, flexWrap: "wrap",
+      }}>
+      <p style={{
+        margin: 0, flex: 1, minWidth: 220,
+        fontSize: 13, color: textColor, lineHeight: 1.6,
+        fontFamily: "'Geist Mono','Courier New',monospace",
+      }}>
+        Acest site folosește cookies pentru analiză. Continuând, ești de acord.{" "}
+        <a href="/politica-confidentialitate"
+          style={{ color: "#1a4faf", textDecoration: "underline", whiteSpace: "nowrap" }}>
+          Politica de confidentialitate
+        </a>
+      </p>
+      <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+        <button onClick={handleRefuse}
+          style={{
+            padding: "8px 18px", borderRadius: 8,
+            border: `1px solid ${refuseBtnBorder}`,
+            background: "transparent", color: textColor,
+            fontSize: 12, fontWeight: 600, letterSpacing: 0.5,
+            fontFamily: "'Geist Mono','Courier New',monospace",
+            cursor: "pointer", transition: "opacity 0.15s",
+          }}>
+          Refuză
+        </button>
+        <button onClick={handleAccept}
+          style={{
+            padding: "8px 18px", borderRadius: 8,
+            border: "none",
+            background: "#002B7F", color: "#fff",
+            fontSize: 12, fontWeight: 600, letterSpacing: 0.5,
+            fontFamily: "'Geist Mono','Courier New',monospace",
+            cursor: "pointer", transition: "opacity 0.15s",
+          }}>
+          Accept
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // --- ADSENSE SIDEBAR ---
 function SidebarAd() {
   useEffect(() => {
@@ -193,7 +285,7 @@ function Input({ label, value, onChange, suffix, type = "number", step, min = "0
   return (
     <div style={{ marginBottom: 16 }}>
       <label htmlFor={id} style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#64748B", marginBottom: 6, fontFamily: "'Geist Mono','Courier New',monospace" }}>{label}</label>
-      <div style={{ display: "flex", alignItems: "center", background: "rgba(0,43,127,0.04)", border: "1px solid rgba(0,43,127,0.08)", borderRadius: 10, overflow: "hidden" }}>
+      <div className="input-wrap" style={{ display: "flex", alignItems: "center", background: "rgba(0,43,127,0.04)", border: "1px solid rgba(0,43,127,0.08)", borderRadius: 10, overflow: "hidden" }}>
         <input id={id} type={type} value={value} onChange={e => onChange(e.target.value)} step={step} min={min} max={max}
           style={{ flex: 1, padding: "12px 14px", background: "transparent", border: "none", color: "#0D1117", fontSize: 16, fontFamily: "'Geist Mono','Courier New',monospace", outline: "none", width: "100%" }} />
         {suffix && <span style={{ padding: "0 14px", color: "#94A3B8", fontSize: 13, fontFamily: "'Geist Mono','Courier New',monospace", whiteSpace: "nowrap" }}>{suffix}</span>}
@@ -204,9 +296,9 @@ function Input({ label, value, onChange, suffix, type = "number", step, min = "0
 
 function Toggle({ label, checked, onChange, id }) {
   return (
-    <label htmlFor={id} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", marginBottom: 12 }}>
+    <label style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer", marginBottom: 12 }}>
       <div id={id} role="switch" aria-checked={checked} onClick={() => onChange(!checked)} onKeyDown={e => e.key === ' ' && onChange(!checked)} tabIndex={0}
-        style={{ width: 40, height: 22, borderRadius: 11, background: checked ? "#002B7F" : "rgba(0,43,127,0.06)", position: "relative", transition: "background 0.2s", cursor: "pointer" }}>
+        style={{ width: 40, height: 22, borderRadius: 11, background: checked ? "#002B7F" : "rgba(0,43,127,0.06)", position: "relative", transition: "background 0.2s", cursor: "pointer", flexShrink: 0 }}>
         <div style={{ width: 16, height: 16, borderRadius: "50%", background: "#fff", position: "absolute", top: 3, left: checked ? 21 : 3, transition: "left 0.2s" }} />
       </div>
       <span style={{ fontSize: 13, color: "#475569", fontFamily: "'Geist Mono','Courier New',monospace" }}>{label}</span>
@@ -254,11 +346,14 @@ function SalaryCalc() {
         <label style={{ display: "block", fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#64748B", marginBottom: 6, fontFamily: "'Geist Mono','Courier New',monospace" }}>Persoane in intretinere</label>
         <Selector label="Persoane in intretinere" options={[{ label: "0", value: "0" }, { label: "1", value: "1" }, { label: "2", value: "2" }, { label: "3+", value: "3" }]} value={dependenti} onChange={setDependenti} />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Salariu Net" value={formatRON(r.net)} accent="#059669" sub="in mana / luna" />
         <Stat label="Salariu Brut" value={formatRON(r.brut)} accent="#1a4faf" sub="brut / luna" />
         <Stat label="Cost Angajator" value={formatRON(r.costAngajator)} accent="#D4A017" sub="total firma" />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 2, color: "#94A3B8", marginBottom: 12, fontFamily: "'Geist Mono','Courier New',monospace" }}>Detalii Contributii</div>
       <BarChart items={[
         { label: "CAS (25%)", value: r.cas, color: "linear-gradient(90deg,#CE1126,#e8394d)" },
@@ -290,10 +385,13 @@ function PFACalc() {
       <Selector label="Sistem impozitare PFA" options={[{ label: "SISTEM REAL", value: "real" }, { label: "NORMA VENIT", value: "norma" }]} value={tip} onChange={setTip} />
       <Input id="pfa-venit" label="Venit Brut Anual" value={venit} onChange={setVenit} suffix="LEI / an" min="0" />
       {tip === "real" && <Input id="pfa-chelt" label="Cheltuieli Deductibile" value={cheltuieli} onChange={setCheltuieli} suffix="LEI / an" min="0" />}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Venit Net Anual" value={formatRON(r.venitDupaImpozitare)} accent="#059669" sub={`~${formatRON(r.venitDupaImpozitare / 12)} lei/luna`} />
         <Stat label="Total Taxe" value={formatRON(r.totalTaxe)} accent="#CE1126" sub={`${((r.totalTaxe / (r.venitNet || 1)) * 100).toFixed(1)}% rata efectiva`} />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <BarChart items={[
         { label: "Impozit (10%)", value: r.impozit, color: "linear-gradient(90deg,#002B7F,#1a4faf)" },
         { label: "CAS (25%)", value: r.cas, color: "linear-gradient(90deg,#CE1126,#e8394d)" },
@@ -360,11 +458,14 @@ function MortgageCalc() {
         <Input id="cr-dobanda" label="Dobanda Anuala" value={dobanda} onChange={setDobanda} suffix="%" step="0.1" min="0" max="50" />
         <Input id="cr-ani" label="Perioada" value={ani} onChange={setAni} suffix="ANI" min="1" max="35" />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 20, border: "1px solid rgba(0,43,127,0.05)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 4, background: "rgba(0,43,127,0.03)", borderRadius: 14, padding: "8px 0", marginBottom: 8, border: "1px solid rgba(0,43,127,0.05)" }}>
         <Stat label="Rata Lunara" value={formatRON(r.rataLunara)} accent="#1a4faf" sub="lei / luna" />
         <Stat label="Total Platit" value={formatRON(r.totalPlatit)} accent="#D4A017" sub={`in ${ani} ani`} />
         <Stat label="Total Dobanda" value={formatRON(r.totalDobanda)} accent="#CE1126" sub={`${((r.totalDobanda / (r.totalPlatit || 1)) * 100).toFixed(0)}% din total`} />
       </div>
+      <p style={{ margin: "0 0 16px", textAlign: "center", fontSize: 10, color: "#94A3B8", fontFamily: "'Geist Mono','Courier New',monospace", letterSpacing: 0.3 }}>
+        Calcule orientative · Nu constituie consultanta fiscala
+      </p>
       <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 2, color: "#94A3B8", marginBottom: 8, fontFamily: "'Geist Mono','Courier New',monospace" }}>Principal vs Dobanda</div>
       <div style={{ height: 36, borderRadius: 10, overflow: "hidden", display: "flex", marginBottom: 8 }}>
         <div style={{ width: `${principalPct}%`, background: "linear-gradient(90deg,#002B7F,#1a4faf)", display: "flex", alignItems: "center", justifyContent: "center", transition: "width 0.5s" }}>
@@ -452,6 +553,58 @@ function FAQSection() {
     </>
   );
 }
+// --- TOP NAV ---
+function TopNav({ dark, textSub }) {
+  const navBg = dark ? "rgba(15,23,42,0.96)" : "rgba(247,248,252,0.96)";
+  const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,43,127,0.08)";
+  const logoSecond = dark ? "#e2e8f0" : "#0D1117";
+  const links = [
+    { id: "salariu", label: "Salariu" },
+    { id: "pfa", label: "PFA" },
+    { id: "credit", label: "Credit Ipotecar" },
+    { id: "faq", label: "FAQ" },
+  ];
+  return (
+    <nav aria-label="Navigatie principala" style={{
+      position: "sticky", top: 5, zIndex: 200,
+      background: navBg,
+      backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+      borderBottom: `1px solid ${border}`,
+    }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", height: 52, gap: 8 }}>
+        {/* Logo */}
+        <a href="https://calculeazarapid.ro/" aria-label="CalculeazaRapid — pagina principala"
+          style={{ textDecoration: "none", flexShrink: 0, marginRight: 4 }}>
+          <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 800, fontSize: 15, letterSpacing: -0.3 }}>
+            <span style={{ color: "#002B7F" }}>Calculeaza</span><span style={{ color: logoSecond }}>Rapid</span>
+          </span>
+        </a>
+        {/* Divider */}
+        <div style={{ width: 1, height: 18, background: border, flexShrink: 0 }} />
+        {/* Nav links — horizontally scrollable on mobile, scrollbar hidden */}
+        <div className="topnav-links" style={{ display: "flex", gap: 2, overflowX: "auto", flex: 1 }}>
+          {links.map(link => (
+            <a key={link.id} href={`#${link.id}`}
+              style={{
+                display: "inline-flex", alignItems: "center",
+                padding: "6px 11px", borderRadius: 8,
+                fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
+                fontFamily: "'Geist Mono','Courier New',monospace",
+                color: textSub, textDecoration: "none", whiteSpace: "nowrap",
+                transition: "color 0.15s, background 0.15s",
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 // --- DARK MODE TOGGLE ---
 function DarkModeToggle({ dark, setDark }) {
   return (
@@ -465,7 +618,6 @@ function DarkModeToggle({ dark, setDark }) {
 
 // --- MAIN APP ---
 export default function App() {
-  const [tab, setTab] = useURLState("tab", "salariu");
   const [dark, setDark] = useState(() => window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const bg = dark ? "#0f172a" : "#F7F8FC";
@@ -473,12 +625,6 @@ export default function App() {
   const cardBorder = dark ? "rgba(255,255,255,0.08)" : "rgba(0,43,127,0.05)";
   const textMain = dark ? "#e2e8f0" : "#0D1117";
   const textSub = dark ? "#94a3b8" : "#64748B";
-
-  const tabs = [
-    { id: "salariu", label: "Salariu", icon: "💰", desc: "Calculator Brut ↔ Net" },
-    { id: "pfa", label: "PFA", icon: "📋", desc: "Taxe & Contributii" },
-    { id: "credit", label: "Credit", icon: "🏠", desc: "Simulare Ipotecar" },
-  ];
 
   // Inject dynamic dark mode CSS vars
   useEffect(() => {
@@ -490,6 +636,9 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: bg, color: textMain, fontFamily: "'Geist Mono','Courier New',monospace", transition: "background 0.3s, color 0.3s" }}>
+      {/* Skip to content — visible on keyboard focus */}
+      <a href="#main-content" className="skip-link">Sari la conținut</a>
+
       {/* Romanian flag stripe */}
       <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: 5, display: "flex", zIndex: 9999, pointerEvents: "none" }}>
         <div style={{ flex: 1, background: "#002B7F" }} />
@@ -497,6 +646,9 @@ export default function App() {
         <div style={{ flex: 1, background: "#CE1126" }} />
       </div>
       <div style={{ position: "fixed", top: -200, right: -200, width: 600, height: 600, background: "radial-gradient(circle,rgba(0,43,127,0.04) 0%,transparent 70%)", pointerEvents: "none" }} />
+
+      {/* TOP NAVIGATION */}
+      <TopNav dark={dark} textSub={textSub} />
 
       {/* Outer wrapper */}
       <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", gap: 24, padding: "40px 20px 60px", maxWidth: 1100, margin: "0 auto" }}>
@@ -506,7 +658,7 @@ export default function App() {
         </div>
 
         {/* MAIN CONTENT */}
-        <main style={{ width: "100%", maxWidth: 640 }}>
+        <main id="main-content" style={{ width: "100%", maxWidth: 640 }}>
           {/* Header */}
           <header style={{ marginBottom: 40, textAlign: "center" }}>
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 12, fontFamily: "'Geist Mono','Courier New',monospace" }}>Financial Instruments Romania 2026</div>
@@ -523,27 +675,40 @@ export default function App() {
             </p>
           </header>
 
-          {/* Tab Navigation */}
-          <nav aria-label="Calculator tabs" style={{ display: "grid", gridTemplateColumns: `repeat(${tabs.length},1fr)`, gap: 6, marginBottom: 32, background: cardBg, borderRadius: 16, padding: 6, border: `1px solid ${cardBorder}` }}>
-            {tabs.map(t => (
-              <button key={t.id} onClick={() => setTab(t.id)} aria-selected={tab === t.id} role="tab"
-                style={{ padding: "14px 8px", border: "none", borderRadius: 12, cursor: "pointer", background: tab === t.id ? "rgba(0,43,127,0.08)" : "transparent", transition: "all 0.25s ease", display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-                <span style={{ fontSize: 20 }} aria-hidden="true">{t.icon}</span>
-                <span style={{ fontSize: 13, fontWeight: 600, fontFamily: "'Geist Mono','Courier New',monospace", color: tab === t.id ? "#1a4faf" : textSub }}>{t.label}</span>
-                <span style={{ fontSize: 10, fontFamily: "'Geist Mono','Courier New',monospace", color: tab === t.id ? "#002B7F" : "#CBD5E1" }}>{t.desc}</span>
-              </button>
-            ))}
-          </nav>
+          {/* ── SALARIU SECTION ── */}
+          <section id="salariu" aria-label="Calculator Salariu Brut Net Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">💰</span> Calculator Salariu
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <SalaryCalc />
+            </div>
+          </section>
 
-          {/* Calculator Panel */}
-          <div role="tabpanel" aria-label={`Calculator ${tab}`} style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
-            {tab === "salariu" && <SalaryCalc />}
-            {tab === "pfa" && <PFACalc />}
-            {tab === "credit" && <MortgageCalc />}
+          {/* ── PFA SECTION ── */}
+          <section id="pfa" aria-label="Calculator PFA Taxe si Contributii Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">📋</span> Calculator PFA
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <PFACalc />
+            </div>
+          </section>
+
+          {/* ── CREDIT SECTION ── */}
+          <section id="credit" aria-label="Simulator Credit Ipotecar Romania 2026" style={{ marginBottom: 40 }}>
+            <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
+              <span aria-hidden="true">🏠</span> Simulator Credit Ipotecar
+            </div>
+            <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
+              <MortgageCalc />
+            </div>
+          </section>
+
+          {/* ── FAQ SECTION ── */}
+          <div id="faq">
+            <FAQSection />
           </div>
-
-          {/* FAQ */}
-          <FAQSection />
 
           {/* Footer */}
           <footer style={{ marginTop: 32, textAlign: "center" }}>
@@ -551,6 +716,12 @@ export default function App() {
               <div>Calculele au caracter orientativ · Nu constituie consultanta fiscala</div>
               <div>Actualizat conform Codului Fiscal 2026 · Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
               <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazaRapid.ro — built with ♥ for Romania</div>
+              <div style={{ marginTop: 8 }}>
+                <a href="/politica-confidentialitate"
+                  style={{ fontSize: 10, color: "#64748B", fontFamily: "'Geist Mono',monospace", textDecoration: "underline" }}>
+                  Politica de Confidentialitate
+                </a>
+              </div>
             </div>
           </footer>
         </main>
@@ -559,11 +730,48 @@ export default function App() {
       {/* Dark mode toggle */}
       <DarkModeToggle dark={dark} setDark={setDark} />
 
+      {/* GDPR cookie consent banner */}
+      <CookieBanner dark={dark} />
+
       {/* Responsive CSS for sidebar ad */}
       <style>{`
+        .skip-link {
+          clip: rect(0 0 0 0);
+          clip-path: inset(50%);
+          height: 1px;
+          overflow: hidden;
+          position: absolute;
+          white-space: nowrap;
+          width: 1px;
+          text-decoration: none;
+        }
+        .skip-link:focus {
+          clip: auto;
+          clip-path: none;
+          height: auto;
+          overflow: visible;
+          position: fixed;
+          left: 50%;
+          top: 14px;
+          transform: translateX(-50%);
+          width: auto;
+          z-index: 10001;
+          background: #002B7F;
+          color: #fff;
+          padding: 8px 20px;
+          border-radius: 8px;
+          font-family: 'Geist Mono','Courier New',monospace;
+          font-size: 13px;
+          font-weight: 600;
+          border: 2px solid #FCD116;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
         @media (min-width: 900px) { .sidebar-ad-left { display: flex !important; } }
         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 0.5; }
         *:focus-visible { outline: 2px solid #002B7F; outline-offset: 2px; border-radius: 4px; }
+        .input-wrap:focus-within { outline: 2px solid #002B7F; outline-offset: 0; border-radius: 10px; }
+        .topnav-links { -ms-overflow-style: none; scrollbar-width: none; }
+        .topnav-links::-webkit-scrollbar { display: none; }
       `}</style>
     </div>
   );

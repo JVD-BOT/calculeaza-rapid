@@ -11,6 +11,9 @@ html {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      /* offset anchors so content isn't hidden under the sticky nav (5px flag + 52px nav + 5px buffer) */
+      scroll-padding-top: 62px;
 }
 
 body {
