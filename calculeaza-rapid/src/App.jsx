@@ -626,6 +626,11 @@ export default function App() {
   const textMain = dark ? "#e2e8f0" : "#0D1117";
   const textSub = dark ? "#94a3b8" : "#64748B";
 
+  // Enforce Romanian title at runtime — overrides any stale cached HTML
+  useEffect(() => {
+    document.title = "Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA & Credit Ipotecar | CalculeazaRapid";
+  }, []);
+
   // Inject dynamic dark mode CSS vars
   useEffect(() => {
     document.documentElement.style.setProperty("--bg", bg);

@@ -1,6 +1,8 @@
 // Politica de Confidentialitate — CalculeazaRapid.ro
 // Rendered at /politica-confidentialitate via pathname routing in main.jsx
 
+import { useEffect } from "react";
+
 const LAST_UPDATED = "13 aprilie 2026";
 
 const s = {
@@ -70,6 +72,10 @@ const s = {
 };
 
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    document.title = "Politica de Confidentialitate | CalculeazaRapid";
+  }, []);
+
   return (
     <div style={{ minHeight: "100vh", background: "#F7F8FC", color: "#0D1117" }}>
 
