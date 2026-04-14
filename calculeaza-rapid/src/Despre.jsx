@@ -2,6 +2,7 @@
 // Rendered at /despre via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const s = {
   h2: {
@@ -104,7 +105,11 @@ const calculators = [
 
 export default function Despre() {
   useEffect(() => {
-    document.title = "Despre CalculeazaRapid — Calculator Impozit Romania 2026";
+    setPageMeta(
+      "Despre CalculeazaRapid — Calculator Impozit Romania 2026",
+      "CalculeazaRapid ofera calculatoare fiscale gratuite pentru Romania: salariu brut-net, taxe PFA si simulator credit ipotecar. Date precise, actualizate conform Codului Fiscal 2026.",
+      "/despre"
+    );
   }, []);
 
   return (

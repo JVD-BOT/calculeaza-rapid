@@ -2,6 +2,7 @@
 // Rendered at /politica-confidentialitate via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const LAST_UPDATED = "13 aprilie 2026";
 
@@ -73,7 +74,11 @@ const s = {
 
 export default function PrivacyPolicy() {
   useEffect(() => {
-    document.title = "Politica de Confidentialitate | CalculeazaRapid";
+    setPageMeta(
+      "Politica de Confidentialitate | CalculeazaRapid",
+      "Politica de confidentialitate CalculeazaRapid.ro — cum sunt prelucrate datele, cookie-uri Google Analytics, drepturi GDPR si informatii de contact.",
+      "/politica-confidentialitate"
+    );
   }, []);
 
   return (
