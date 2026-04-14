@@ -550,6 +550,21 @@ function FAQSection() {
         {faqsRO.map((item, i) => (<div key={i} style={itemStyle}><h3 style={questionStyle}>{item.q}</h3><p style={answerStyle}>{item.a}</p></div>))}
         <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8 }} />
       </section>
+      <section aria-label="Ghiduri fiscale Romania" style={{ marginTop: 40 }}>
+        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 20, fontFamily: "'Geist Mono','Courier New',monospace" }}>Ghiduri Fiscale — Romania 2026</h2>
+        {[
+          { href: "/ghid-salariu-brut-net", label: "Ghid Complet: Cum se Calculeaza Salariul Net din Brut in Romania 2026", desc: "CAS, CASS, impozit, deducere personala si scutire IT — cu exemple si tabel complet." },
+          { href: "/ghid-pfa-taxe", label: "Ghid PFA 2026: Taxe, Contributii si Cum sa Platesti Mai Putin Legal", desc: "PFA vs SRL, sistem real vs norma de venit, praguri CAS si CASS, sfaturi de optimizare." },
+          { href: "/ghid-credit-ipotecar", label: "Ghid Credit Ipotecar Romania 2026: Tot Ce Trebuie Sa Stii", desc: "Dobanda fixa vs IRCC, programul Noua Casa, gradul de indatorare si cum compari ofertele." },
+          { href: "/ghid-deducere-personala", label: "Deducerea Personala 2026: Cine Beneficiaza si Cum se Calculeaza", desc: "Praguri de venit, persoane in intretinere, exemple de calcul detaliate." },
+        ].map((g, i) => (
+          <div key={i} style={{ ...itemStyle, display: "flex", flexDirection: "column", gap: 4 }}>
+            <a href={g.href} style={{ ...questionStyle, textDecoration: "none", display: "inline-block" }}>{g.label}</a>
+            <p style={answerStyle}>{g.desc}</p>
+          </div>
+        ))}
+        <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8 }} />
+      </section>
     </>
   );
 }
@@ -721,10 +736,14 @@ export default function App() {
               <div>Calculele au caracter orientativ · Nu constituie consultanta fiscala</div>
               <div>Actualizat conform Codului Fiscal 2026 · Salariu minim brut: {formatRON(TAX.SALARIU_MINIM_BRUT)} lei</div>
               <div style={{ marginTop: 8, color: "#EFF2F7" }}>CalculeazaRapid.ro — built with ♥ for Romania</div>
-              <div style={{ marginTop: 8 }}>
+              <div style={{ marginTop: 8, display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
                 <a href="/politica-confidentialitate"
                   style={{ fontSize: 10, color: "#64748B", fontFamily: "'Geist Mono',monospace", textDecoration: "underline" }}>
                   Politica de Confidentialitate
+                </a>
+                <a href="/despre"
+                  style={{ fontSize: 10, color: "#64748B", fontFamily: "'Geist Mono',monospace", textDecoration: "underline" }}>
+                  Despre
                 </a>
               </div>
             </div>
