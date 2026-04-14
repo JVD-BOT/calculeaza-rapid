@@ -2,6 +2,7 @@
 // Rendered at /ghid-credit-ipotecar via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const s = {
   h2: {
@@ -113,8 +114,11 @@ const s = {
 
 export default function GhidCreditIpotecar() {
   useEffect(() => {
-    document.title =
-      "Ghid Credit Ipotecar Romania 2026: Tot Ce Trebuie Sa Stii | CalculeazaRapid";
+    setPageMeta(
+      "Ghid Credit Ipotecar Romania 2026: Tot Ce Trebuie Sa Stii | CalculeazaRapid",
+      "Cum functioneaza dobanzile fixe si IRCC, ce verifica banca, programul Noua Casa si cum compari ofertele. Simulator credit ipotecar gratuit pentru Romania 2026.",
+      "/ghid-credit-ipotecar"
+    );
   }, []);
 
   return (
@@ -282,6 +286,22 @@ export default function GhidCreditIpotecar() {
           <li><strong>Compară cel puțin 3–4 bănci:</strong> Nu accepta prima ofertă. Diferența de 0,5 pp în DAE la un credit de 200.000 lei pe 25 de ani reprezintă ~25.000 lei în plus plătiți pe toată durata.</li>
           <li><strong>Verifică costurile notariale și ANCPI:</strong> Taxa de intabulare, onorariul notarului și evaluarea bancară a imobilului pot adăuga 2.000–5.000 lei la costul inițial.</li>
         </ul>
+
+        {/* ── GHIDURI SIMILARE ── */}
+        <div style={{ marginTop: 48, padding: "20px 24px", background: "rgba(0,43,127,0.03)", borderRadius: 14, border: "1px solid rgba(0,43,127,0.07)" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#64748B", textTransform: "uppercase", fontFamily: "'Geist Mono',monospace", marginBottom: 14 }}>Ghiduri Similare</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              { href: "/ghid-salariu-brut-net", label: "Ghid Complet: Calcul Salariu Net din Brut în România 2026", desc: "Verifică veniturile nete disponibile înainte de a calcula gradul de îndatorare." },
+              { href: "/ghid-pfa-taxe", label: "Ghid PFA 2026: Taxe, Contribuții și Optimizare Fiscală Legală", desc: "Dacă ești freelancer sau PFA, vezi cum se calculează venitul net acceptat de bancă." },
+            ].map((g, i) => (
+              <a key={i} href={g.href} style={{ textDecoration: "none" }}>
+                <div style={{ fontSize: 14, fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 600, color: "#1a4faf" }}>→ {g.label}</div>
+                <div style={{ fontSize: 12, color: "#94A3B8", fontFamily: "'Geist Mono',monospace", marginTop: 2 }}>{g.desc}</div>
+              </a>
+            ))}
+          </div>
+        </div>
 
         {/* ── 7. CTA ── */}
         <h2 style={s.h2}>Simulator credit ipotecar — calculează rata ta</h2>

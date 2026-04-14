@@ -2,6 +2,7 @@
 // Rendered at /ghid-salariu-brut-net via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const s = {
   h2: {
@@ -133,8 +134,11 @@ const s = {
 
 export default function GhidSalariuBrutNet() {
   useEffect(() => {
-    document.title =
-      "Ghid Complet: Cum se Calculeaza Salariul Net din Brut in Romania 2026 | CalculeazaRapid";
+    setPageMeta(
+      "Ghid Complet: Cum se Calculeaza Salariul Net din Brut in Romania 2026 | CalculeazaRapid",
+      "Ghid pas cu pas: CAS 25%, CASS 10%, impozit pe venit, deducere personala si scutire IT. Tabel net din brut pentru cele mai comune salarii din Romania 2026.",
+      "/ghid-salariu-brut-net"
+    );
   }, []);
 
   const rows = [
@@ -326,6 +330,22 @@ export default function GhidSalariuBrutNet() {
         <p style={{ ...s.p, fontSize: 12, color: "#94A3B8", marginTop: 4 }}>
           * Valorile sunt rotunjite la leu întreg conform regulilor de calcul. Deducerea personală se aplică doar pentru brut cuprins între 4.050 și 4.300 lei.
         </p>
+
+        {/* ── GHIDURI SIMILARE ── */}
+        <div style={{ marginTop: 48, padding: "20px 24px", background: "rgba(0,43,127,0.03)", borderRadius: 14, border: "1px solid rgba(0,43,127,0.07)" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#64748B", textTransform: "uppercase", fontFamily: "'Geist Mono',monospace", marginBottom: 14 }}>Ghiduri Similare</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              { href: "/ghid-deducere-personala", label: "Deducerea Personală 2026: Cine Beneficiază și Cum Se Calculează", desc: "Praguri, persoane în întreținere și exemple complete de calcul." },
+              { href: "/ghid-pfa-taxe", label: "Ghid PFA 2026: Taxe, Contribuții și Optimizare Fiscală Legală", desc: "PFA vs SRL, sistem real vs normă de venit, CAS și CASS." },
+            ].map((g, i) => (
+              <a key={i} href={g.href} style={{ textDecoration: "none" }}>
+                <div style={{ fontSize: 14, fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 600, color: "#1a4faf" }}>→ {g.label}</div>
+                <div style={{ fontSize: 12, color: "#94A3B8", fontFamily: "'Geist Mono',monospace", marginTop: 2 }}>{g.desc}</div>
+              </a>
+            ))}
+          </div>
+        </div>
 
         {/* ── 7. CONCLUZIE ── */}
         <h2 style={s.h2}>Concluzie și calculator online</h2>

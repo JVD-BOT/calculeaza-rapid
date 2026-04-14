@@ -2,6 +2,7 @@
 // Rendered at /ghid-deducere-personala via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const s = {
   h2: {
@@ -155,8 +156,11 @@ function calcNet(brut, dep) {
 
 export default function GhidDeducerePersonala() {
   useEffect(() => {
-    document.title =
-      "Deducerea Personala 2026: Cine Beneficiaza si Cum se Calculeaza | CalculeazaRapid";
+    setPageMeta(
+      "Deducerea Personala 2026: Cine Beneficiaza si Cum se Calculeaza | CalculeazaRapid",
+      "Ghid complet deducere personala Romania 2026: cine beneficiaza, praguri de venit, persoane in intretinere si exemple de calcul detaliate pentru salariul minim.",
+      "/ghid-deducere-personala"
+    );
   }, []);
 
   // Examples: brut 4050 and 4200 with 0, 1, 2, 3 dependents
@@ -361,6 +365,22 @@ export default function GhidDeducerePersonala() {
         </p>
         <div style={s.noteGreen}>
           <strong>Sfat:</strong> Dacă ai dreptul la deducere personală dar nu ai declarat-o la timp, poți solicita recalcularea și regularizarea la finalul anului prin declarația anuală de venit (D212).
+        </div>
+
+        {/* ── GHIDURI SIMILARE ── */}
+        <div style={{ marginTop: 48, padding: "20px 24px", background: "rgba(0,43,127,0.03)", borderRadius: 14, border: "1px solid rgba(0,43,127,0.07)" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#64748B", textTransform: "uppercase", fontFamily: "'Geist Mono',monospace", marginBottom: 14 }}>Ghiduri Similare</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              { href: "/ghid-salariu-brut-net", label: "Ghid Complet: Calcul Salariu Net din Brut în România 2026", desc: "Cum funcționează CAS, CASS și impozitul pe venit — cu tabel pentru cele mai comune salarii." },
+              { href: "/ghid-pfa-taxe", label: "Ghid PFA 2026: Taxe, Contribuții și Optimizare Fiscală Legală", desc: "Dacă ai și activitate independentă, vezi cum se calculează taxele PFA." },
+            ].map((g, i) => (
+              <a key={i} href={g.href} style={{ textDecoration: "none" }}>
+                <div style={{ fontSize: 14, fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 600, color: "#1a4faf" }}>→ {g.label}</div>
+                <div style={{ fontSize: 12, color: "#94A3B8", fontFamily: "'Geist Mono',monospace", marginTop: 2 }}>{g.desc}</div>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* ── 8. CTA ── */}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 // --- GDPR / COOKIE CONSENT ---
 const GA_ID = "G-FY9HZNPJV5";
@@ -519,13 +520,6 @@ function MortgageCalc() {
 }
 // --- FAQ SECTION ---
 function FAQSection() {
-  const faqsEN = [
-    { q: "How do I calculate income tax in Romania?", a: "In Romania, income tax (impozit pe venit) is 10% of the taxable gross salary, after deducting CAS (25%) and CASS (10%) social contributions. Use the salary calculator above to instantly compute your net salary from any gross amount, based on the 2026 Romanian Fiscal Code." },
-    { q: "What is the income tax rate in Romania in 2026?", a: "Romania applies a flat income tax rate of 10% on salaries and most personal income. Employees also pay CAS 25% (pension) and CASS 10% (health). Employers pay CAM (2.25%). IT professionals earning over 10,000 lei gross are exempt from income tax." },
-    { q: "How do I calculate PFA taxes in Romania?", a: "PFA (Persoana Fizica Autorizata) taxes in Romania include a 10% income tax, CAS 25% (calculated on 24x the minimum wage annually), and CASS 10% (calculated on 6–60x minimum wage depending on income). Switch to the PFA tab above for a full 2026 breakdown." },
-    { q: "What is the minimum gross salary in Romania in 2026?", a: "The minimum gross salary in Romania in 2026 is 4,050 lei per month, which corresponds to a net take-home pay of approximately 2,363 lei per month." },
-    { q: "How much net salary will I get from a 5,000 lei gross salary in Romania?", a: "For a gross salary of 5,000 lei (2026), the net take-home salary is approximately 2,925 lei/month after CAS (1,250 lei), CASS (500 lei), and income tax (325 lei). Enter any amount in the calculator above for instant results." },
-  ];
   const faqsRO = [
     { q: "Cum calculez impozitul pe salariu in Romania?", a: "Impozitul pe venit in Romania este de 10% aplicat la baza impozabila, dupa deducerea CAS (25%) si CASS (10%). Folositi calculatorul de mai sus pentru a afla salariul net din brut in cateva secunde, actualizat conform Codului Fiscal 2026." },
     { q: "Care este cota de impozit pe venit in Romania in 2026?", a: "Romania aplica o cota unica de impozit pe venit de 10% pentru salarii si majoritatea veniturilor persoanelor fizice. Angajatii platesc si CAS 25% (pensie) si CASS 10% (sanatate). Angajatorul plateste CAM (2,25%). Angajatii IT cu salariu brut peste 10.000 lei sunt scutiti de impozit." },
@@ -540,12 +534,7 @@ function FAQSection() {
   const answerStyle = { margin: 0, fontSize: 12, color: "#64748B", lineHeight: 1.7, fontFamily: "'Geist Mono','Courier New',monospace" };
   return (
     <>
-      <section id="faq-romania-tax-en" aria-label="FAQ in English" style={{ marginTop: 48 }}>
-        <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 24, fontFamily: "'Geist Mono','Courier New',monospace" }}>FAQ — Calculate Tax in Romania</h2>
-        {faqsEN.map((item, i) => (<div key={i} style={itemStyle}><h3 style={questionStyle}>{item.q}</h3><p style={answerStyle}>{item.a}</p></div>))}
-        <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8 }} />
-      </section>
-      <section id="faq-romania-tax-ro" aria-label="Intrebari frecvente in romana" style={{ marginTop: 40 }}>
+      <section id="faq-romania-tax-ro" aria-label="Intrebari frecvente in romana" style={{ marginTop: 48 }}>
         <h2 style={{ fontSize: 13, textTransform: "uppercase", letterSpacing: 3, color: "#64748B", marginBottom: 24, fontFamily: "'Geist Mono','Courier New',monospace" }}>Intrebari Frecvente — Calculator Impozit Romania</h2>
         {faqsRO.map((item, i) => (<div key={i} style={itemStyle}><h3 style={questionStyle}>{item.q}</h3><p style={answerStyle}>{item.a}</p></div>))}
         <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8 }} />
@@ -643,7 +632,11 @@ export default function App() {
 
   // Enforce Romanian title at runtime — overrides any stale cached HTML
   useEffect(() => {
-    document.title = "Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA & Credit Ipotecar | CalculeazaRapid";
+    setPageMeta(
+      "Calculator Impozit Romania 2026 — Salariu Brut-Net, PFA & Credit Ipotecar | CalculeazaRapid",
+      "Calculator gratuit impozit Romania 2026. Calculeaza salariu brut-net, taxe PFA si rata credit ipotecar. Actualizat conform Codului Fiscal 2026.",
+      "/"
+    );
   }, []);
 
   // Inject dynamic dark mode CSS vars

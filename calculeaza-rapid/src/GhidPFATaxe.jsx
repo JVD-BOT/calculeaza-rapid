@@ -2,6 +2,7 @@
 // Rendered at /ghid-pfa-taxe via pathname routing in main.jsx
 
 import { useEffect } from "react";
+import { setPageMeta } from "./pageMeta.js";
 
 const s = {
   h2: {
@@ -113,8 +114,11 @@ const s = {
 
 export default function GhidPFATaxe() {
   useEffect(() => {
-    document.title =
-      "Ghid PFA 2026: Taxe, Contributii si Cum sa Platesti Mai Putin Legal | CalculeazaRapid";
+    setPageMeta(
+      "Ghid PFA 2026: Taxe, Contributii si Cum sa Platesti Mai Putin Legal | CalculeazaRapid",
+      "PFA vs SRL, sistem real vs norma de venit, CAS si CASS 2026, exemplu complet de calcul si sfaturi de optimizare fiscala legala pentru freelanceri din Romania.",
+      "/ghid-pfa-taxe"
+    );
   }, []);
 
   return (
@@ -303,6 +307,22 @@ export default function GhidPFATaxe() {
         </ul>
         <div style={s.noteGreen}>
           <strong>Important:</strong> Toate strategiile prezentate sunt strict legale și prevăzute de Codul Fiscal. Evitarea legală a impozitelor (tax avoidance) este un drept al contribuabilului; evaziunea fiscală (ascunderea veniturilor) este ilegală și sancționată penal.
+        </div>
+
+        {/* ── GHIDURI SIMILARE ── */}
+        <div style={{ marginTop: 48, padding: "20px 24px", background: "rgba(0,43,127,0.03)", borderRadius: 14, border: "1px solid rgba(0,43,127,0.07)" }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#64748B", textTransform: "uppercase", fontFamily: "'Geist Mono',monospace", marginBottom: 14 }}>Ghiduri Similare</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {[
+              { href: "/ghid-salariu-brut-net", label: "Ghid Complet: Calcul Salariu Net din Brut în România 2026", desc: "CAS, CASS, impozit pe venit și deducere personală explicate pas cu pas." },
+              { href: "/ghid-credit-ipotecar", label: "Ghid Credit Ipotecar România 2026: Tot Ce Trebuie Să Știi", desc: "Dobânzi, programul Noua Casă, DAE și cum compari ofertele băncilor." },
+            ].map((g, i) => (
+              <a key={i} href={g.href} style={{ textDecoration: "none" }}>
+                <div style={{ fontSize: 14, fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 600, color: "#1a4faf" }}>→ {g.label}</div>
+                <div style={{ fontSize: 12, color: "#94A3B8", fontFamily: "'Geist Mono',monospace", marginTop: 2 }}>{g.desc}</div>
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* ── 8. CTA ── */}
