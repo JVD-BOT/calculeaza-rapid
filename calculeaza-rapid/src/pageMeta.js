@@ -22,6 +22,10 @@ export function setPageMeta(title, description, path) {
   setAttr('meta[name="twitter:description"]', description);
 
   if (path) {
-    setAttr('meta[property="og:url"]', `https://calculeazarapid.ro${path}`);
+    const url = `https://calculeazarapid.ro${path}`;
+    setAttr('meta[property="og:url"]', url);
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", url);
   }
 }
