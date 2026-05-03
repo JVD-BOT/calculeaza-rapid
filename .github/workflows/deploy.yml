@@ -36,9 +36,6 @@ jobs:
         run: npm run build
         working-directory: calculeaza-rapid
 
-      - name: Copy CNAME
-        run: cp CNAME calculeaza-rapid/dist/CNAME
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
