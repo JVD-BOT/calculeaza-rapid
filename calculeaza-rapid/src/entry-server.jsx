@@ -1,27 +1,60 @@
-import { renderToString } from 'react-dom/server'
-import React from 'react'
-import { StrictMode } from 'react'
-import App from './App.jsx'
-import PrivacyPolicy from './PrivacyPolicy.jsx'
-import GhidSalariuBrutNet from './GhidSalariuBrutNet.jsx'
-import GhidPFATaxe from './GhidPFATaxe.jsx'
-import GhidCreditIpotecar from './GhidCreditIpotecar.jsx'
-import GhidDeducerePersonala from './GhidDeducerePersonala.jsx'
-import Despre from './Despre.jsx'
+import { renderToString } from "react-dom/server";
+import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import GhidSalariuBrutNet from "./GhidSalariuBrutNet.jsx";
+import GhidPFATaxe from "./GhidPFATaxe.jsx";
+import GhidCreditIpotecar from "./GhidCreditIpotecar.jsx";
+import GhidDeducerePersonala from "./GhidDeducerePersonala.jsx";
+import Despre from "./Despre.jsx";
 
-const h = React.createElement
+export const routes = [
+  {
+    path: "/ghid-salariu-brut-net",
+    Component: GhidSalariuBrutNet,
+    title:
+      "Ghid Complet: Cum se Calculeaza Salariul Net din Brut in Romania 2026 | CalculeazaRapid",
+    description:
+      "Ghid pas cu pas: CAS 25%, CASS 10%, impozit pe venit, deducere personala si scutire IT. Tabel net din brut pentru cele mai comune salarii din Romania 2026.",
+  },
+  {
+    path: "/ghid-pfa-taxe",
+    Component: GhidPFATaxe,
+    title:
+      "Ghid PFA 2026: Taxe, Contributii si Cum sa Platesti Mai Putin Legal | CalculeazaRapid",
+    description:
+      "PFA vs SRL, sistem real vs norma de venit, CAS si CASS 2026, exemplu complet de calcul si sfaturi de optimizare fiscala legala pentru freelanceri din Romania.",
+  },
+  {
+    path: "/ghid-credit-ipotecar",
+    Component: GhidCreditIpotecar,
+    title:
+      "Ghid Credit Ipotecar Romania 2026: Tot Ce Trebuie Sa Stii | CalculeazaRapid",
+    description:
+      "Cum functioneaza dobanzile fixe si IRCC, ce verifica banca, programul Noua Casa si cum compari ofertele. Simulator credit ipotecar gratuit pentru Romania 2026.",
+  },
+  {
+    path: "/ghid-deducere-personala",
+    Component: GhidDeducerePersonala,
+    title:
+      "Deducerea Personala 2026: Cine Beneficiaza si Cum se Calculeaza | CalculeazaRapid",
+    description:
+      "Ghid complet deducere personala Romania 2026: cine beneficiaza, praguri de venit, persoane in intretinere si exemple de calcul detaliate pentru salariul minim.",
+  },
+  {
+    path: "/despre",
+    Component: Despre,
+    title: "Despre CalculeazaRapid — Calculator Impozit Romania 2026",
+    description:
+      "CalculeazaRapid ofera calculatoare fiscale gratuite pentru Romania: salariu brut-net, taxe PFA si simulator credit ipotecar. Date precise, actualizate conform Codului Fiscal 2026.",
+  },
+  {
+    path: "/politica-confidentialitate",
+    Component: PrivacyPolicy,
+    title: "Politica de Confidentialitate | CalculeazaRapid",
+    description:
+      "Politica de confidentialitate CalculeazaRapid.ro — cum sunt prelucrate datele, cookie-uri Google Analytics, drepturi GDPR si informatii de contact.",
+  },
+];
 
-export function render(urlPath) {
-      const path = urlPath.replace(/\/$/, '') || '/'
-      let page
-      switch (path) {
-          case '/politica-confidentialitate': page = h(PrivacyPolicy); break
-          case '/ghid-salariu-brut-net': page = h(GhidSalariuBrutNet); break
-          case '/ghid-pfa-taxe': page = h(GhidPFATaxe); break
-          case '/ghid-credit-ipotecar': page = h(GhidCreditIpotecar); break
-          case '/ghid-deducere-personala': page = h(GhidDeducerePersonala); break
-          case '/despre': page = h(Despre); break
-          default: page = h(App)
-      }
-      return renderToString(h(StrictMode, null, page))
+export function renderRoute(route) {
+  return renderToString(<route.Component />);
 }
