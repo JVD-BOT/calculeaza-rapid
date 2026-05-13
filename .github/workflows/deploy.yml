@@ -29,15 +29,12 @@ jobs:
           cache-dependency-path: calculeaza-rapid/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: calculeaza-rapid
 
       - name: Build
         run: npm run build
         working-directory: calculeaza-rapid
-
-      - name: Copy CNAME
-        run: cp CNAME calculeaza-rapid/dist/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
