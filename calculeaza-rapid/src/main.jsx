@@ -8,6 +8,8 @@ import GhidPFATaxe from './GhidPFATaxe.jsx'
 import GhidCreditIpotecar from './GhidCreditIpotecar.jsx'
 import GhidDeducerePersonala from './GhidDeducerePersonala.jsx'
 import Despre from './Despre.jsx'
+import TermeniSiConditii from './TermeniSiConditii.jsx'
+import Contact from './Contact.jsx'
 
 // Simple pathname routing — Vercel rewrites everything to index.html,
 // so we switch components here instead of using a router library.
@@ -21,6 +23,8 @@ function getPage() {
     case '/ghid-credit-ipotecar':       return <GhidCreditIpotecar />;
     case '/ghid-deducere-personala':    return <GhidDeducerePersonala />;
     case '/despre':                     return <Despre />;
+    case '/termeni-si-conditii':        return <TermeniSiConditii />;
+    case '/contact':                    return <Contact />;
     default:                            return <App />;
   }
 }

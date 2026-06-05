@@ -5,6 +5,8 @@ import GhidPFATaxe from "./GhidPFATaxe.jsx";
 import GhidCreditIpotecar from "./GhidCreditIpotecar.jsx";
 import GhidDeducerePersonala from "./GhidDeducerePersonala.jsx";
 import Despre from "./Despre.jsx";
+import TermeniSiConditii from "./TermeniSiConditii.jsx";
+import Contact from "./Contact.jsx";
 
 export const routes = [
   {
@@ -52,6 +54,20 @@ export const routes = [
     title: "Politica de Confidentialitate | CalculeazaRapid",
     description:
       "Politica de confidentialitate CalculeazaRapid.ro — cum sunt prelucrate datele, cookie-uri Google Analytics, drepturi GDPR si informatii de contact.",
+  },
+  {
+    path: "/termeni-si-conditii",
+    Component: TermeniSiConditii,
+    title: "Termeni și Condiții | CalculeazaRapid",
+    description:
+      "Termenii și condițiile de utilizare ale site-ului calculeazarapid.ro — caracterul informativ al calculatoarelor, proprietate intelectuală, limitarea răspunderii și contact.",
+  },
+  {
+    path: "/contact",
+    Component: Contact,
+    title: "Contact | CalculeazaRapid",
+    description:
+      "Contactează echipa CalculeazaRapid pentru întrebări, sugestii sau pentru a raporta o eroare într-un calculator. Răspundem în 1–2 zile lucrătoare.",
   },
 ];
 
