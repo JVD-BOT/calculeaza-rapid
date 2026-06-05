@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { setPageMeta } from "./pageMeta.js";
 
 // --- GDPR / COOKIE CONSENT ---
@@ -421,12 +421,19 @@ function MortgageCalc() {
   const [showTable, setShowTable] = useState(false);
   const [useAvans, setUseAvans] = useState(pretTotal !== "");
 
-  const computedSuma = useAvans && pretTotal
-    ? Math.round(parseFloat(pretTotal) * (1 - parseFloat(avans) / 100)) || 0
-    : parseFloat(suma) || 0;
+  const computedSuma = useMemo(
+    () => useAvans && pretTotal
+      ? Math.round(parseFloat(pretTotal) * (1 - parseFloat(avans) / 100)) || 0
+      : parseFloat(suma) || 0,
+    [useAvans, pretTotal, avans, suma]
+  );
 
-  const r = calcMortgage(computedSuma, parseFloat(dobanda) || 0, parseFloat(ani) || 1);
-  const principalPct = (computedSuma / (r.totalPlatit || 1)) * 100;
+  const r = useMemo(
+    () => calcMortgage(computedSuma, parseFloat(dobanda) || 0, parseFloat(ani) || 1),
+    [computedSuma, dobanda, ani]
+  );
+
+  const principalPct = r.totalPlatit > 0 ? (computedSuma / r.totalPlatit) * 100 : 0;
   const shareText = `Simulare credit ipotecar Romania: ${formatRON(computedSuma)} lei, ${dobanda}%, ${ani} ani → rata lunara ${formatRON(r.rataLunara)} lei. Calculeaza la:`;
 
   return (
@@ -562,6 +569,7 @@ function TopNav({ dark, textSub }) {
   const navBg = dark ? "rgba(15,23,42,0.96)" : "rgba(247,248,252,0.96)";
   const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,43,127,0.08)";
   const logoSecond = dark ? "#e2e8f0" : "#0D1117";
+  const navLinkColor = dark ? "#cbd5e1" : "#64748B";
   const calcLinks = [
     { href: "#salariu", label: "Salariu" },
     { href: "#pfa", label: "PFA" },
@@ -579,7 +587,7 @@ function TopNav({ dark, textSub }) {
     padding: "6px 11px", borderRadius: 8,
     fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
     fontFamily: "'Geist Mono','Courier New',monospace",
-    color: textSub, textDecoration: "none", whiteSpace: "nowrap",
+    color: navLinkColor, textDecoration: "none", whiteSpace: "nowrap",
     transition: "color 0.15s, background 0.15s",
   };
   return (
@@ -605,7 +613,7 @@ function TopNav({ dark, textSub }) {
             <a key={link.href} href={link.href}
               style={linkStyle}
               onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; }}
             >
               {link.label}
             </a>
@@ -615,7 +623,7 @@ function TopNav({ dark, textSub }) {
             <a key={link.href} href={link.href}
               style={{ ...linkStyle, opacity: 0.7 }}
               onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; e.currentTarget.style.opacity = "1"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.7"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.7"; }}
             >
               {link.label}
             </a>
