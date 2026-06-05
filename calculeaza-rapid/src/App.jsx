@@ -562,12 +562,26 @@ function TopNav({ dark, textSub }) {
   const navBg = dark ? "rgba(15,23,42,0.96)" : "rgba(247,248,252,0.96)";
   const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,43,127,0.08)";
   const logoSecond = dark ? "#e2e8f0" : "#0D1117";
-  const links = [
-    { id: "salariu", label: "Salariu" },
-    { id: "pfa", label: "PFA" },
-    { id: "credit", label: "Credit Ipotecar" },
-    { id: "faq", label: "FAQ" },
+  const calcLinks = [
+    { href: "#salariu", label: "Salariu" },
+    { href: "#pfa", label: "PFA" },
+    { href: "#credit", label: "Credit Ipotecar" },
+    { href: "#faq", label: "FAQ" },
   ];
+  const pageLinks = [
+    { href: "/despre", label: "Despre" },
+    { href: "/politica-confidentialitate", label: "Confidentialitate" },
+    { href: "/contact", label: "Contact" },
+    { href: "/termeni-si-conditii", label: "Termeni" },
+  ];
+  const linkStyle = {
+    display: "inline-flex", alignItems: "center",
+    padding: "6px 11px", borderRadius: 8,
+    fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
+    fontFamily: "'Geist Mono','Courier New',monospace",
+    color: textSub, textDecoration: "none", whiteSpace: "nowrap",
+    transition: "color 0.15s, background 0.15s",
+  };
   return (
     <nav aria-label="Navigatie principala" style={{
       position: "sticky", top: 5, zIndex: 200,
@@ -587,18 +601,21 @@ function TopNav({ dark, textSub }) {
         <div style={{ width: 1, height: 18, background: border, flexShrink: 0 }} />
         {/* Nav links — horizontally scrollable on mobile, scrollbar hidden */}
         <div className="topnav-links" style={{ display: "flex", gap: 2, overflowX: "auto", flex: 1 }}>
-          {links.map(link => (
-            <a key={link.id} href={`#${link.id}`}
-              style={{
-                display: "inline-flex", alignItems: "center",
-                padding: "6px 11px", borderRadius: 8,
-                fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
-                fontFamily: "'Geist Mono','Courier New',monospace",
-                color: textSub, textDecoration: "none", whiteSpace: "nowrap",
-                transition: "color 0.15s, background 0.15s",
-              }}
+          {calcLinks.map(link => (
+            <a key={link.href} href={link.href}
+              style={linkStyle}
               onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
               onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; }}
+            >
+              {link.label}
+            </a>
+          ))}
+          <div style={{ width: 1, height: 18, background: border, flexShrink: 0, alignSelf: "center", margin: "0 4px" }} />
+          {pageLinks.map(link => (
+            <a key={link.href} href={link.href}
+              style={{ ...linkStyle, opacity: 0.7 }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; e.currentTarget.style.opacity = "1"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.7"; }}
             >
               {link.label}
             </a>
@@ -693,6 +710,24 @@ export default function App() {
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
               <span aria-hidden="true">💰</span> Calculator Salariu
             </div>
+            <div style={{ marginBottom: 20 }}>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 700, fontSize: 18, color: textMain, margin: "0 0 10px", lineHeight: 1.3 }}>
+                Calculator Salariu Brut-Net 2026
+              </h2>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                Acest calculator transformă salariul brut în salariu net (sau invers) conform legislației fiscale române în vigoare. Din salariul brut se rețin trei contribuții obligatorii: CAS (pensie) 25%, CASS (sănătate) 10% și impozitul pe venit 10%, acesta din urmă aplicat după scăderea deducerii personale.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Cum funcționează:</strong> introduci salariul brut, iar calculatorul reține automat CAS și CASS, aplică deducerea personală dacă te încadrezi (în 2026, doar pentru salarii brute între 4.050 și 4.300 lei), apoi calculează impozitul de 10% pe baza impozabilă rămasă.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Exemplu:</strong> pentru un salariu brut de 5.000 lei fără persoane în întreținere, contribuțiile și impozitul lasă un salariu net de aproximativ 2.925 lei.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: 0 }}>
+                Vrei detaliile complete, formulele și mai multe exemple? Citește ghidul:{" "}
+                <a href="/ghid-salariu-brut-net" style={{ color: "#1a4faf", textDecoration: "none", fontWeight: 600 }}>Salariu Brut-Net →</a>
+              </p>
+            </div>
             <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
               <SalaryCalc />
             </div>
@@ -703,6 +738,24 @@ export default function App() {
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
               <span aria-hidden="true">📋</span> Calculator PFA
             </div>
+            <div style={{ marginBottom: 20 }}>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 700, fontSize: 18, color: textMain, margin: "0 0 10px", lineHeight: 1.3 }}>
+                Calculator Taxe PFA 2026
+              </h2>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                Calculatorul estimează taxele datorate ca Persoană Fizică Autorizată, în funcție de sistemul ales: sistem real (impozitare pe venitul net efectiv) sau normă de venit. Contribuțiile principale sunt CAS și CASS, calculate în raport cu plafoanele salariului minim brut pe economie.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Cum funcționează:</strong> introduci venitul și cheltuielile deductibile, alegi sistemul de impozitare, iar calculatorul estimează CAS, CASS și impozitul pe venit de 10%, afișând baza de calcul pentru fiecare contribuție.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Exemplu:</strong> un PFA în sistem real cu venit net peste plafonul de 12 salarii minime datorează CAS și CASS calculate la plafonul aplicabil, plus impozit de 10% pe venitul net.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: 0 }}>
+                Pentru pragurile actuale, comparația PFA vs SRL și un exemplu complet, vezi ghidul:{" "}
+                <a href="/ghid-pfa-taxe" style={{ color: "#1a4faf", textDecoration: "none", fontWeight: 600 }}>Taxe PFA →</a>
+              </p>
+            </div>
             <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
               <PFACalc />
             </div>
@@ -712,6 +765,24 @@ export default function App() {
           <section id="credit" aria-label="Simulator Credit Ipotecar Romania 2026" style={{ marginBottom: 40 }}>
             <div style={{ fontSize: 11, letterSpacing: 4, color: "#002B7F", textTransform: "uppercase", marginBottom: 14, fontFamily: "'Geist Mono','Courier New',monospace", display: "flex", alignItems: "center", gap: 8 }}>
               <span aria-hidden="true">🏠</span> Simulator Credit Ipotecar
+            </div>
+            <div style={{ marginBottom: 20 }}>
+              <h2 style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 700, fontSize: 18, color: textMain, margin: "0 0 10px", lineHeight: 1.3 }}>
+                Simulator Credit Ipotecar 2026
+              </h2>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                Simulatorul calculează rata lunară a unui credit ipotecar și generează graficul de amortizare, în funcție de suma împrumutată, dobândă și perioada de rambursare. Poți compara o dobândă fixă cu una variabilă (indexată la IRCC).
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Cum funcționează:</strong> introduci suma creditului, rata dobânzii și durata în ani, iar simulatorul calculează rata lunară și defalcarea între principal și dobândă pe toată perioada. Comutatorul de amortizare arată cum scade soldul în timp.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: "0 0 8px" }}>
+                <strong style={{ color: textMain }}>Exemplu:</strong> la un credit de 400.000 lei pe 30 de ani cu o dobândă de 6%, rata lunară este de aproximativ 2.398 lei.
+              </p>
+              <p style={{ fontFamily: "'Plus Jakarta Sans','Segoe UI',sans-serif", fontSize: 14, color: textSub, lineHeight: 1.8, margin: 0 }}>
+                Vrei să înțelegi dobânda fixă vs IRCC, ce verifică băncile și programul Noua Casă? Citește ghidul:{" "}
+                <a href="/ghid-credit-ipotecar" style={{ color: "#1a4faf", textDecoration: "none", fontWeight: 600 }}>Credit Ipotecar →</a>
+              </p>
             </div>
             <div style={{ background: cardBg, border: `1px solid ${cardBorder}`, borderRadius: 20, padding: "28px 24px" }}>
               <MortgageCalc />
