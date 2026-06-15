@@ -559,9 +559,11 @@ function FAQSection() {
 }
 // --- TOP NAV ---
 function TopNav({ dark, textSub }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navBg = dark ? "rgba(15,23,42,0.96)" : "rgba(247,248,252,0.96)";
   const border = dark ? "rgba(255,255,255,0.07)" : "rgba(0,43,127,0.08)";
   const logoSecond = dark ? "#e2e8f0" : "#0D1117";
+  const navLinkColor = dark ? "#cbd5e1" : "#64748B";
   const calcLinks = [
     { href: "#salariu", label: "Salariu" },
     { href: "#pfa", label: "PFA" },
@@ -579,8 +581,22 @@ function TopNav({ dark, textSub }) {
     padding: "6px 11px", borderRadius: 8,
     fontSize: 12, fontWeight: 600, letterSpacing: 0.3,
     fontFamily: "'Geist Mono','Courier New',monospace",
-    color: textSub, textDecoration: "none", whiteSpace: "nowrap",
+    color: navLinkColor, textDecoration: "none", whiteSpace: "nowrap",
     transition: "color 0.15s, background 0.15s",
+  };
+  const mobileLinkStyle = {
+    display: "flex", alignItems: "center",
+    padding: "11px 14px", borderRadius: 8,
+    fontSize: 14, fontWeight: 600,
+    fontFamily: "'Geist Mono','Courier New',monospace",
+    color: navLinkColor, textDecoration: "none",
+    transition: "color 0.15s, background 0.15s",
+  };
+  const sectionLabel = {
+    fontSize: 10, fontWeight: 700, letterSpacing: 1,
+    color: dark ? "#475569" : "#94A3B8",
+    fontFamily: "'Geist Mono','Courier New',monospace",
+    padding: "4px 14px 2px", textTransform: "uppercase",
   };
   return (
     <nav aria-label="Navigatie principala" style={{
@@ -597,15 +613,15 @@ function TopNav({ dark, textSub }) {
             <span style={{ color: "#002B7F" }}>Calculeaza</span><span style={{ color: logoSecond }}>Rapid</span>
           </span>
         </a>
-        {/* Divider */}
-        <div style={{ width: 1, height: 18, background: border, flexShrink: 0 }} />
-        {/* Nav links — horizontally scrollable on mobile, scrollbar hidden */}
+        {/* Divider — hidden on mobile */}
+        <div className="topnav-divider" style={{ width: 1, height: 18, background: border, flexShrink: 0 }} />
+        {/* Nav links — visible on desktop, hidden on mobile */}
         <div className="topnav-links" style={{ display: "flex", gap: 2, overflowX: "auto", flex: 1 }}>
           {calcLinks.map(link => (
             <a key={link.href} href={link.href}
               style={linkStyle}
               onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; }}
             >
               {link.label}
             </a>
@@ -615,13 +631,74 @@ function TopNav({ dark, textSub }) {
             <a key={link.href} href={link.href}
               style={{ ...linkStyle, opacity: 0.7 }}
               onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; e.currentTarget.style.opacity = "1"; }}
-              onMouseLeave={e => { e.currentTarget.style.color = textSub; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.7"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.7"; }}
             >
               {link.label}
             </a>
           ))}
         </div>
+        {/* Hamburger button — hidden on desktop, shown on mobile */}
+        <button
+          className="topnav-hamburger"
+          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={menuOpen}
+          aria-controls="topnav-mobile-panel"
+          onClick={() => setMenuOpen(o => !o)}
+          style={{
+            display: "none", alignItems: "center", justifyContent: "center",
+            marginLeft: "auto", width: 40, height: 40, borderRadius: 8,
+            border: `1px solid ${border}`, background: "transparent",
+            cursor: "pointer", flexShrink: 0,
+          }}
+        >
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+            {menuOpen ? (
+              <>
+                <line x1="1" y1="1" x2="17" y2="13" stroke={navLinkColor} strokeWidth="2" strokeLinecap="round"/>
+                <line x1="17" y1="1" x2="1" y2="13" stroke={navLinkColor} strokeWidth="2" strokeLinecap="round"/>
+              </>
+            ) : (
+              <>
+                <line x1="0" y1="1" x2="18" y2="1" stroke={navLinkColor} strokeWidth="2" strokeLinecap="round"/>
+                <line x1="0" y1="7" x2="18" y2="7" stroke={navLinkColor} strokeWidth="2" strokeLinecap="round"/>
+                <line x1="0" y1="13" x2="18" y2="13" stroke={navLinkColor} strokeWidth="2" strokeLinecap="round"/>
+              </>
+            )}
+          </svg>
+        </button>
       </div>
+      {/* Mobile dropdown panel */}
+      {menuOpen && (
+        <div id="topnav-mobile-panel" className="topnav-mobile-panel" style={{
+          borderTop: `1px solid ${border}`,
+          padding: "8px 12px 12px",
+          background: navBg,
+        }}>
+          <div style={sectionLabel}>Calculatoare</div>
+          {calcLinks.map(link => (
+            <a key={link.href} href={link.href}
+              style={mobileLinkStyle}
+              onClick={() => setMenuOpen(false)}
+              onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; }}
+            >
+              {link.label}
+            </a>
+          ))}
+          <div style={{ height: 1, background: border, margin: "8px 0" }} />
+          <div style={sectionLabel}>Informații</div>
+          {pageLinks.map(link => (
+            <a key={link.href} href={link.href}
+              style={{ ...mobileLinkStyle, opacity: 0.8 }}
+              onClick={() => setMenuOpen(false)}
+              onMouseEnter={e => { e.currentTarget.style.color = "#1a4faf"; e.currentTarget.style.background = "rgba(0,43,127,0.08)"; e.currentTarget.style.opacity = "1"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = navLinkColor; e.currentTarget.style.background = "transparent"; e.currentTarget.style.opacity = "0.8"; }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
@@ -860,6 +937,14 @@ export default function App() {
         .input-wrap:focus-within { outline: 2px solid #002B7F; outline-offset: 0; border-radius: 10px; }
         .topnav-links { -ms-overflow-style: none; scrollbar-width: none; }
         .topnav-links::-webkit-scrollbar { display: none; }
+        @media (max-width: 639px) {
+          .topnav-links { display: none !important; }
+          .topnav-divider { display: none !important; }
+          .topnav-hamburger { display: flex !important; }
+        }
+        @media (min-width: 640px) {
+          .topnav-mobile-panel { display: none !important; }
+        }
       `}</style>
     </div>
   );
