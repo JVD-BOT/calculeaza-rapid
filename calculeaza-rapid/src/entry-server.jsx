@@ -8,6 +8,7 @@ import Despre from "./Despre.jsx";
 import TermeniSiConditii from "./TermeniSiConditii.jsx";
 import Contact from "./Contact.jsx";
 import Ghiduri from "./Ghiduri.jsx";
+import GhidSalariulMinim from "./GhidSalariulMinim.jsx";
 
 export const routes = [
   {
@@ -16,6 +17,14 @@ export const routes = [
     title: "Ghiduri Fiscale și Financiare România 2026 | CalculeazaRapid",
     description:
       "Toate ghidurile CalculeazaRapid despre salarii, taxe, contributii si credite in Romania: salariu brut-net, deducere personala, taxe PFA si credit ipotecar, cu formule si exemple.",
+  },
+  {
+    path: "/ghid-salariul-minim",
+    Component: GhidSalariulMinim,
+    title:
+      "Salariul Minim Brut pe Economie 2026: Valoare, Net și Sectoriale | CalculeazaRapid",
+    description:
+      "Salariul minim brut in Romania 2026: 4.050 lei pana la 30 iunie si 4.325 lei de la 1 iulie (HG 146/2026). Cat ramane net, suma neimpozabila si salariile minime sectoriale.",
   },
   {
     path: "/ghid-salariu-brut-net",

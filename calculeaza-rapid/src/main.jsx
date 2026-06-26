@@ -11,6 +11,7 @@ import Despre from './Despre.jsx'
 import TermeniSiConditii from './TermeniSiConditii.jsx'
 import Contact from './Contact.jsx'
 import Ghiduri from './Ghiduri.jsx'
+import GhidSalariulMinim from './GhidSalariulMinim.jsx'
 
 // Simple pathname routing — Vercel rewrites everything to index.html,
 // so we switch components here instead of using a router library.
@@ -19,6 +20,7 @@ const path = window.location.pathname.replace(/\/$/, '') || '/';
 function getPage() {
   switch (path) {
     case '/ghiduri':                    return <Ghiduri />;
+    case '/ghid-salariul-minim':        return <GhidSalariulMinim />;
     case '/politica-confidentialitate': return <PrivacyPolicy />;
     case '/ghid-salariu-brut-net':      return <GhidSalariuBrutNet />;
     case '/ghid-pfa-taxe':              return <GhidPFATaxe />;

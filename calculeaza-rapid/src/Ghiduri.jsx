@@ -79,7 +79,7 @@ const SECTIONS = [
       {
         title: "Ghid Salariul Minim 2026",
         desc: "Valoarea salariului minim brut pe economie în 2026, echivalentul net, salariile minime sectoriale și cui se aplică.",
-        soon: true,
+        href: "/ghid-salariul-minim",
       },
       {
         title: "Ghid Concediu Medical",
