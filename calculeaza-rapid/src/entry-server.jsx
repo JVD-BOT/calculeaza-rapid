@@ -7,8 +7,16 @@ import GhidDeducerePersonala from "./GhidDeducerePersonala.jsx";
 import Despre from "./Despre.jsx";
 import TermeniSiConditii from "./TermeniSiConditii.jsx";
 import Contact from "./Contact.jsx";
+import Ghiduri from "./Ghiduri.jsx";
 
 export const routes = [
+  {
+    path: "/ghiduri",
+    Component: Ghiduri,
+    title: "Ghiduri Fiscale și Financiare România 2026 | CalculeazaRapid",
+    description:
+      "Toate ghidurile CalculeazaRapid despre salarii, taxe, contributii si credite in Romania: salariu brut-net, deducere personala, taxe PFA si credit ipotecar, cu formule si exemple.",
+  },
   {
     path: "/ghid-salariu-brut-net",
     Component: GhidSalariuBrutNet,
