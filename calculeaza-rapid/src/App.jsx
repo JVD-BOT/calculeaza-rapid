@@ -559,7 +559,10 @@ function FAQSection() {
             <p style={answerStyle}>{g.desc}</p>
           </div>
         ))}
-        <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8 }} />
+        <div style={{ marginTop: 4 }}>
+          <a href="/ghiduri" style={{ ...questionStyle, textDecoration: "none", fontWeight: 600 }}>Vezi toate ghidurile →</a>
+        </div>
+        <div style={{ borderTop: "1px solid rgba(0,43,127,0.05)", paddingTop: 8, marginTop: 12 }} />
       </section>
     </>
   );
@@ -578,6 +581,7 @@ function TopNav({ dark, textSub }) {
     { href: "#faq", label: "FAQ" },
   ];
   const pageLinks = [
+    { href: "/ghiduri", label: "Ghiduri" },
     { href: "/despre", label: "Despre" },
     { href: "/politica-confidentialitate", label: "Confidentialitate" },
     { href: "/contact", label: "Contact" },
